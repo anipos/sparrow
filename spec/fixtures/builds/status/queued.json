@@ -1,0 +1,43 @@
+{
+  "id": "85ea233c-c258-44e7-a8cd-9dfbc907a694",
+  "projectId": "project-id",
+  "status": "QUEUED",
+  "source": {
+    "repoSource": {
+      "projectId": "project-id",
+      "repoName": "github_anipos_sparrow",
+      "branchName": "dependabot/bundler/rake-tw-13.0"
+    }
+  },
+  "steps": [
+    {
+      "name": "gcr.io/kaniko-project/executor",
+      "args": [
+        "--dockerfile=Dockerfile",
+        "--destination=gcr.io/project-id/sparrow:f57316c6d3ae2461ff6396930e89b49555bb69ee",
+        "--destination=gcr.io/project-id/sparrow:latest",
+        "--cache=true",
+        "--cache-ttl=336h"
+      ]
+    }
+  ],
+  "createTime": "2019-09-27T22:26:26.719491645Z",
+  "timeout": "1800s",
+  "logsBucket": "gs://918090106759.cloudbuild-logs.googleusercontent.com",
+  "sourceProvenance": {
+    "resolvedRepoSource": {
+      "projectId": "project-id",
+      "repoName": "github_anipos_sparrow",
+      "commitSha": "f57316c6d3ae2461ff6396930e89b49555bb69ee"
+    }
+  },
+  "buildTriggerId": "e9ba2adc-297b-4c79-9305-3fc6c3768db5",
+  "options": {
+    "substitutionOption": "ALLOW_LOOSE",
+    "logging": "LEGACY"
+  },
+  "logUrl": "https://console.cloud.google.com/gcr/builds/85ea233c-c258-44e7-a8cd-9dfbc907a694?project=918090106759",
+  "tags": [
+    "trigger-e9ba2adc-297b-4c79-9305-3fc6c3768db5"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "id": "8aec3f61-76a9-4c5c-a255-41636df09bf0",
+  "projectId": "project-id",
+  "status": "SUCCESS",
+  "source": {
+    "repoSource": {
+      "projectId": "project-id",
+      "repoName": "github_anipos_sparrow",
+      "branchName": "master"
+    }
+  },
+  "steps": [
+    {
+      "name": "gcr.io/kaniko-project/executor",
+      "args": [
+        "--dockerfile=Dockerfile",
+        "--destination=gcr.io/project-id/sparrow:b996c13441128cb91d9e41374e0ec071b5cef7b4",
+        "--destination=gcr.io/project-id/sparrow:latest",
+        "--cache=true",
+        "--cache-ttl=336h"
+      ],
+      "timing": {
+        "startTime": "2019-09-27T22:22:42.696858600Z",
+        "endTime": "2019-09-27T22:24:32.078255694Z"
+      },
+      "pullTiming": {
+        "startTime": "2019-09-27T22:22:42.696858600Z",
+        "endTime": "2019-09-27T22:22:44.120975302Z"
+      },
+      "status": "SUCCESS"
+    }
+  ],
+  "results": {
+    "buildStepImages": [
+      ""
+    ]
+  },
+  "createTime": "2019-09-27T22:22:32.910458414Z",
+  "startTime": "2019-09-27T22:22:34.534482567Z",
+  "finishTime": "2019-09-27T22:24:33.295939Z",
+  "timeout": "1800s",
+  "logsBucket": "gs://918090106759.cloudbuild-logs.googleusercontent.com",
+  "sourceProvenance": {
+    "resolvedRepoSource": {
+      "projectId": "project-id",
+      "repoName": "github_anipos_sparrow",
+      "commitSha": "b996c13441128cb91d9e41374e0ec071b5cef7b4"
+    }
+  },
+  "buildTriggerId": "e9ba2adc-297b-4c79-9305-3fc6c3768db5",
+  "options": {
+    "substitutionOption": "ALLOW_LOOSE",
+    "logging": "LEGACY"
+  },
+  "logUrl": "https://console.cloud.google.com/gcr/builds/8aec3f61-76a9-4c5c-a255-41636df09bf0?project=918090106759",
+  "tags": [
+    "trigger-e9ba2adc-297b-4c79-9305-3fc6c3768db5"
+  ],
+  "timing": {
+    "BUILD": {
+      "startTime": "2019-09-27T22:22:42.696822159Z",
+      "endTime": "2019-09-27T22:24:32.136251297Z"
+    },
+    "FETCHSOURCE": {
+      "startTime": "2019-09-27T22:22:35.872631719Z",
+      "endTime": "2019-09-27T22:22:42.625503314Z"
+    }
+  }
+}

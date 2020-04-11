@@ -1,0 +1,17 @@
+name: Publish Docker
+
+on:
+  - push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Publish Docker Image to Docker Hub.
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: anipos/sparrow
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_TOKEN }}
+        tag_semver: true

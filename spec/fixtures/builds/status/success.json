@@ -1,0 +1,69 @@
+{
+  "id": "02200e9c-0f7a-48c0-8050-5dcc60d3e310",
+  "projectId": "project-id",
+  "status": "SUCCESS",
+  "source": {
+    "repoSource": {
+      "projectId": "project-id",
+      "repoName": "github_anipos_sparrow",
+      "branchName": "dep"
+    }
+  },
+  "steps": [
+    {
+      "name": "gcr.io/kaniko-project/executor",
+      "args": [
+        "--dockerfile=Dockerfile",
+        "--destination=gcr.io/project-id/sparrow:7e558427a8d0d7e1a237884cd94e7155126a129d",
+        "--destination=gcr.io/project-id/sparrow:latest",
+        "--cache=true",
+        "--cache-ttl=336h"
+      ],
+      "timing": {
+        "startTime": "2019-09-27T22:24:19.290176535Z",
+        "endTime": "2019-09-27T22:26:16.857718611Z"
+      },
+      "pullTiming": {
+        "startTime": "2019-09-27T22:24:19.290176535Z",
+        "endTime": "2019-09-27T22:24:20.940043615Z"
+      },
+      "status": "SUCCESS"
+    }
+  ],
+  "results": {
+    "buildStepImages": [
+      ""
+    ]
+  },
+  "createTime": "2019-09-27T22:24:11.020280505Z",
+  "startTime": "2019-09-27T22:24:12.430579380Z",
+  "finishTime": "2019-09-27T22:26:19.239002Z",
+  "timeout": "1800s",
+  "logsBucket": "gs://918090106759.cloudbuild-logs.googleusercontent.com",
+  "sourceProvenance": {
+    "resolvedRepoSource": {
+      "projectId": "project-id",
+      "repoName": "github_anipos_sparrow",
+      "commitSha": "7e558427a8d0d7e1a237884cd94e7155126a129d"
+    }
+  },
+  "buildTriggerId": "e9ba2adc-297b-4c79-9305-3fc6c3768db5",
+  "options": {
+    "substitutionOption": "ALLOW_LOOSE",
+    "logging": "LEGACY"
+  },
+  "logUrl": "https://console.cloud.google.com/gcr/builds/02200e9c-0f7a-48c0-8050-5dcc60d3e310?project=918090106759",
+  "tags": [
+    "trigger-e9ba2adc-297b-4c79-9305-3fc6c3768db5"
+  ],
+  "timing": {
+    "BUILD": {
+      "startTime": "2019-09-27T22:24:19.290126206Z",
+      "endTime": "2019-09-27T22:26:16.913071298Z"
+    },
+    "FETCHSOURCE": {
+      "startTime": "2019-09-27T22:24:13.648191541Z",
+      "endTime": "2019-09-27T22:24:19.218033124Z"
+    }
+  }
+}

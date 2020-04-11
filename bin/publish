@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "bundler/setup"
+require "sparrow"
+
+project_id = "whatever"
+client = Sparrow::PubSubGateway::Client.new(project_id)
+topic = client.topic("cloud-builds")
+# TODO(shouichi): Fix to publish cloud build event structured JSON.
+topic.publish("{}")

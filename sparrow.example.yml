@@ -1,0 +1,22 @@
+version: 0.1
+
+jobs:
+  - class: Print
+    project_id: whatever
+    subscription: print
+
+  - class: Slack
+    project_id: whatever
+    subscription: slack
+
+  - class: GitOps
+    project_id: whatever
+    subscription: gitops
+    class_args:
+      targets:
+        - source_repo: org/app
+          config_repo: org/app-conf
+          rewrites:
+            - name: dev
+              erb_path: overlays/dev/deploy.yaml.erb
+              out_path: overlays/dev/deploy.yaml

@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "yaml"
+
+require "sparrow"
+
+config = YAML.safe_load(File.read(ENV["SPARROW_CONFIG"]))
+Sparrow::Master.new(config).start
+
+# TODO(shouichi): Graceful shutdown on SIGTERM.

@@ -1,0 +1,53 @@
+version: 2.1
+
+commands:
+  bundle_install:
+    description: bundle install & cache
+    steps:
+      - restore_cache:
+          keys:
+            - bundler-v1567765222-{{ checksum "Gemfile.lock" }}
+            - bundler-v1567765222-
+      - run:
+          name: Bundle Install
+          command: bundle check --path vendor/bundle || bundle install --deployment
+      - save_cache:
+          key: bundler-v1567765222-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.6.5-buster
+        environment:
+          - GEM_PATH: /home/circleci/project/vendor/bundle/ruby/2.6.0
+          - PUBSUB_EMULATOR_HOST: localhost:8085
+      - image: google/cloud-sdk:288.0.0
+        command:
+          - gcloud
+          - beta
+          - emulators
+          - pubsub
+          - start
+          - --host-port=0.0.0.0:8085
+    steps:
+      - checkout
+      - bundle_install
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
+      - run:
+          name: RSpec
+          # `bundle exec rspec` loads sparrow gem before simplecov starts that
+          # prevents simplecov from gathering code coverage.
+          command: rake spec
+      - store_artifacts:
+          path: coverage
+      - store_test_results:
+          path: rspec
+      - run:
+          name: Yardoc
+          command: bundle exec yardoc 'lib/**/*.rb'
+      - store_artifacts:
+          path: doc

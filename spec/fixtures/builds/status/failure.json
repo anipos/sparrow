@@ -1,0 +1,69 @@
+{
+  "id": "5bc826d2-9093-4f40-88fc-232dc31f2173",
+  "projectId": "project-id",
+  "status": "FAILURE",
+  "source": {
+    "repoSource": {
+      "projectId": "project-id",
+      "repoName": "github_anipos_sparrow",
+      "branchName": "dependabot/bundler/bundler-tw-2.0"
+    }
+  },
+  "steps": [
+    {
+      "name": "gcr.io/kaniko-project/executor",
+      "args": [
+        "--dockerfile=Dockerfile",
+        "--destination=gcr.io/project-id/sparrow:2e0e427716517bede84329c7b611e80e2bceac96",
+        "--destination=gcr.io/project-id/sparrow:latest",
+        "--cache=true",
+        "--cache-ttl=336h"
+      ],
+      "timing": {
+        "startTime": "2019-09-27T22:26:08.811242346Z",
+        "endTime": "2019-09-27T22:26:46.317705763Z"
+      },
+      "pullTiming": {
+        "startTime": "2019-09-27T22:26:08.811242346Z",
+        "endTime": "2019-09-27T22:26:10.464827184Z"
+      },
+      "status": "FAILURE"
+    }
+  ],
+  "results": {
+    "buildStepImages": [
+      ""
+    ]
+  },
+  "createTime": "2019-09-27T22:26:02.907681403Z",
+  "startTime": "2019-09-27T22:26:03.868476390Z",
+  "finishTime": "2019-09-27T22:26:47.542835444Z",
+  "timeout": "1800s",
+  "logsBucket": "gs://918090106759.cloudbuild-logs.googleusercontent.com",
+  "sourceProvenance": {
+    "resolvedRepoSource": {
+      "projectId": "project-id",
+      "repoName": "github_anipos_sparrow",
+      "commitSha": "2e0e427716517bede84329c7b611e80e2bceac96"
+    }
+  },
+  "buildTriggerId": "e9ba2adc-297b-4c79-9305-3fc6c3768db5",
+  "options": {
+    "substitutionOption": "ALLOW_LOOSE",
+    "logging": "LEGACY"
+  },
+  "logUrl": "https://console.cloud.google.com/gcr/builds/5bc826d2-9093-4f40-88fc-232dc31f2173?project=918090106759",
+  "tags": [
+    "trigger-e9ba2adc-297b-4c79-9305-3fc6c3768db5"
+  ],
+  "timing": {
+    "BUILD": {
+      "startTime": "2019-09-27T22:26:08.811193809Z",
+      "endTime": "2019-09-27T22:26:46.377216772Z"
+    },
+    "FETCHSOURCE": {
+      "startTime": "2019-09-27T22:26:04.894812535Z",
+      "endTime": "2019-09-27T22:26:08.731366866Z"
+    }
+  }
+}

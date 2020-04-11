@@ -1,0 +1,10 @@
+FROM ruby:2.6.5
+
+ENV LANG C.UTF-8
+
+ENV APP_ROOT /app
+
+WORKDIR $APP_ROOT
+
+# NOTE: Run bundle install after container started. This makes installation
+# fast when development.

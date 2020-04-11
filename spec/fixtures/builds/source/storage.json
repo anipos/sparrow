@@ -1,0 +1,52 @@
+{
+   "source" : {
+      "storageSource" : {
+         "generation" : "1578095668261741",
+         "bucket" : "project-id_cloudbuild",
+         "object" : "source/1578095667.46-899d80026e354dfbb6fa2f96aa1b0ae3.tgz"
+      }
+   },
+   "logUrl" : "https://console.cloud.google.com/gcr/builds/8a8501cb-ef36-4eeb-a234-74544307a5c7?project=918090106759",
+   "logsBucket" : "gs://918090106759.cloudbuild-logs.googleusercontent.com",
+   "tags" : [
+      "build",
+      "grpc-health-probe"
+   ],
+   "options" : {
+      "logging" : "LEGACY"
+   },
+   "timeout" : "600s",
+   "startTime" : "2020-01-03T23:54:30.163422609Z",
+   "status" : "WORKING",
+   "projectId" : "project-id",
+   "createTime" : "2020-01-03T23:54:29.516876264Z",
+   "sourceProvenance" : {
+      "resolvedStorageSource" : {
+         "generation" : "1578095668261741",
+         "bucket" : "project-id_cloudbuild",
+         "object" : "source/1578095667.46-899d80026e354dfbb6fa2f96aa1b0ae3.tgz"
+      }
+   },
+   "id" : "8a8501cb-ef36-4eeb-a234-74544307a5c7",
+   "steps" : [
+      {
+         "args" : [
+            "clone",
+            "https://github.com/grpc-ecosystem/grpc-health-probe.git"
+         ],
+         "id" : "git-clone",
+         "name" : "gcr.io/cloud-builders/git"
+      },
+      {
+         "dir" : "grpc-health-probe",
+         "id" : "docker-build",
+         "args" : [
+            "build",
+            "-t",
+            "gcr.io/project-id/grpc-health-probe:latest",
+            "."
+         ],
+         "name" : "gcr.io/cloud-builders/docker"
+      }
+   ]
+}
