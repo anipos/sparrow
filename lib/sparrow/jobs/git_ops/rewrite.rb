@@ -53,7 +53,9 @@ module Sparrow
 
         # TODO(shouichi): Handle other git providers (e.g., bitbucket).
         def cloud_source_repo
-          "github_" + @source_repo.tr("/", "_")
+          # Cloud Source Repositories downcases org/repo names (e.g., Foo/Bar
+          # -> foo_bar).
+          ("github_" + @source_repo.tr("/", "_")).downcase
         end
 
         def client
