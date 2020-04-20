@@ -4,6 +4,9 @@ update_configs:
   - package_manager: "ruby:bundler"
     directory: "/"
     update_schedule: "live"
+    automerged_updates:
+      - match:
+          update_type: "all"
 
   - package_manager: "docker"
     directory: "/"
