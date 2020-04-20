@@ -19,7 +19,7 @@ commands:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6.5-buster
+      - image: circleci/ruby:2.6.6-buster
         environment:
           - GEM_PATH: /home/circleci/project/vendor/bundle/ruby/2.6.0
           - PUBSUB_EMULATOR_HOST: localhost:8085
