@@ -32,8 +32,12 @@ module Sparrow
             return
           end
 
-          create_pull_request
-          logger.info("created a pull request")
+          begin
+            create_pull_request
+            logger.info("created a pull request")
+          rescue Octokit::UnprocessableEntity
+            logger.info("pull request exists, skipping")
+          end
         end
 
         private
