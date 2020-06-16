@@ -14,6 +14,8 @@ end
 
 require "bundler/setup"
 require "sparrow"
+require "vcr"
+require "webmock/rspec"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -34,6 +36,18 @@ RSpec.configure do |config|
     Sparrow.instance_eval do
       @logger = Ougai::Logger.new("/dev/null")
     end
+  end
+end
+
+VCR.configure do |config|
+  config.configure_rspec_metadata!
+
+  config.cassette_library_dir = "spec/fixtures/vcr"
+
+  config.hook_into :webmock
+
+  config.filter_sensitive_data("<GITHUB_TOKEN>") do |interaction|
+    interaction.request.headers["Authorization"].first
   end
 end
 
