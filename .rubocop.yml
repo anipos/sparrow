@@ -16,6 +16,18 @@ Layout/MultilineMethodCallIndentation:
 Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
 
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+
 RSpec/ExampleLength:
   Enabled: false
 
@@ -45,3 +57,15 @@ Lint/StructNewOverride:
 
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: comma
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+Style/RedundantRegexpEscape:
+  Enabled: true
+
+Style/SlicingWithRange:
+  Enabled: true
