@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "google/cloud/pubsub"
+require "sentry-raven-without-integrations"
 
 module Sparrow
   # A Cloud PubSub abstraction. It calls a worker on message arrival.
@@ -47,8 +48,10 @@ module Sparrow
 
     def listen(worker)
       subscription.listen do |message|
-        worker.process_message(message)
-        message.acknowledge!
+        Raven.capture do
+          worker.process_message(message)
+          message.acknowledge!
+        end
       end
     end
 
