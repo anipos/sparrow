@@ -6,7 +6,7 @@
     "repoSource": {
       "projectId": "project-id",
       "repoName": "github_anipos_sparrow",
-      "branchName": "dep"
+      "branchName": "master"
     }
   },
   "steps": [
@@ -44,7 +44,7 @@
     "resolvedRepoSource": {
       "projectId": "project-id",
       "repoName": "github_anipos_sparrow",
-      "commitSha": "7e558427a8d0d7e1a237884cd94e7155126a129d"
+      "commitSha": "238947c2440028cfff5388c7fba3aa4ca7ae92f5"
     }
   },
   "buildTriggerId": "e9ba2adc-297b-4c79-9305-3fc6c3768db5",

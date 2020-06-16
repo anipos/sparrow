@@ -1,0 +1,664 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/repos/anipos/sparrow/commits/238947c2440028cfff5388c7fba3aa4ca7ae92f5
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 4.18.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - "<GITHUB_TOKEN>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 16 Jun 2020 08:17:31 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - GitHub.com
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4791'
+      X-Ratelimit-Reset:
+      - '1592296071'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      - Accept-Encoding, Accept, X-Requested-With
+      Etag:
+      - W/"5d7546db9c7b6cc729358151eb86d8f8"
+      Last-Modified:
+      - Tue, 16 Jun 2020 02:06:26 GMT
+      X-Oauth-Scopes:
+      - repo
+      X-Accepted-Oauth-Scopes:
+      - ''
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval,
+        X-GitHub-Media-Type, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      X-Github-Request-Id:
+      - ECC4:25D2:AF9DDD:DD972E:5EE8801B
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sha":"238947c2440028cfff5388c7fba3aa4ca7ae92f5","node_id":"MDY6Q29tbWl0MjU0Mjg2MDYwOjIzODk0N2MyNDQwMDI4Y2ZmZjUzODhjN2ZiYTNhYTRjYTdhZTkyZjU=","commit":{"author":{"name":"Shouichi
+        Kamiya","email":"shouichi.kamiya@gmail.com","date":"2020-06-16T02:06:26Z"},"committer":{"name":"GitHub","email":"noreply@github.com","date":"2020-06-16T02:06:26Z"},"message":"Enable
+        newly added rubocop lints (#25)","tree":{"sha":"ca38215b582380b4913764ba3903fe4e02968ad1","url":"https://api.github.com/repos/anipos/sparrow/git/trees/ca38215b582380b4913764ba3903fe4e02968ad1"},"url":"https://api.github.com/repos/anipos/sparrow/git/commits/238947c2440028cfff5388c7fba3aa4ca7ae92f5","comment_count":0,"verification":{"verified":true,"reason":"valid","signature":"-----BEGIN
+        PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJe6CkiCRBK7hj4Ov3rIwAAdHIIAKw/s3iDyrLgQdK6hlnJLUqV\nJGtRAumlCXXM1wEzDmpesT2aj1PuwrqxZ0derwXjO8gkWW3hGT4wyv1eRY603rUk\nxuRpapFx2txAyx0X1nqiCHMODNOxPmxnUXMFflIm4wxsaguzI7255SiF0zkcBgHq\n3xYiUDtRQE+FLcV49aE/POYuVLkH8sFOgZCrM89XfoIamqQxYasSCp9BWnYtis/B\nfVMYv8At0jHcmoX1TKiAhSnck3CE5ERhFFz951xqk/vc4nzopmr6s4HxTvpFIedy\n+uTflgodyIK40gHRTTovd8RN4WkUnWiY9nSS3R7PzVNutY1KG79GUN1vodetfJk=\n=rxip\n-----END
+        PGP SIGNATURE-----\n","payload":"tree ca38215b582380b4913764ba3903fe4e02968ad1\nparent
+        9d06088481fdd645db1eef3d0f0e783ffabe0074\nauthor Shouichi Kamiya <shouichi.kamiya@gmail.com>
+        1592273186 +0900\ncommitter GitHub <noreply@github.com> 1592273186 +0000\n\nEnable
+        newly added rubocop lints (#25)\n\n"}},"url":"https://api.github.com/repos/anipos/sparrow/commits/238947c2440028cfff5388c7fba3aa4ca7ae92f5","html_url":"https://github.com/anipos/sparrow/commit/238947c2440028cfff5388c7fba3aa4ca7ae92f5","comments_url":"https://api.github.com/repos/anipos/sparrow/commits/238947c2440028cfff5388c7fba3aa4ca7ae92f5/comments","author":{"login":"shouichi","id":99586,"node_id":"MDQ6VXNlcjk5NTg2","avatar_url":"https://avatars0.githubusercontent.com/u/99586?v=4","gravatar_id":"","url":"https://api.github.com/users/shouichi","html_url":"https://github.com/shouichi","followers_url":"https://api.github.com/users/shouichi/followers","following_url":"https://api.github.com/users/shouichi/following{/other_user}","gists_url":"https://api.github.com/users/shouichi/gists{/gist_id}","starred_url":"https://api.github.com/users/shouichi/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/shouichi/subscriptions","organizations_url":"https://api.github.com/users/shouichi/orgs","repos_url":"https://api.github.com/users/shouichi/repos","events_url":"https://api.github.com/users/shouichi/events{/privacy}","received_events_url":"https://api.github.com/users/shouichi/received_events","type":"User","site_admin":false},"committer":{"login":"web-flow","id":19864447,"node_id":"MDQ6VXNlcjE5ODY0NDQ3","avatar_url":"https://avatars3.githubusercontent.com/u/19864447?v=4","gravatar_id":"","url":"https://api.github.com/users/web-flow","html_url":"https://github.com/web-flow","followers_url":"https://api.github.com/users/web-flow/followers","following_url":"https://api.github.com/users/web-flow/following{/other_user}","gists_url":"https://api.github.com/users/web-flow/gists{/gist_id}","starred_url":"https://api.github.com/users/web-flow/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/web-flow/subscriptions","organizations_url":"https://api.github.com/users/web-flow/orgs","repos_url":"https://api.github.com/users/web-flow/repos","events_url":"https://api.github.com/users/web-flow/events{/privacy}","received_events_url":"https://api.github.com/users/web-flow/received_events","type":"User","site_admin":false},"parents":[{"sha":"9d06088481fdd645db1eef3d0f0e783ffabe0074","url":"https://api.github.com/repos/anipos/sparrow/commits/9d06088481fdd645db1eef3d0f0e783ffabe0074","html_url":"https://github.com/anipos/sparrow/commit/9d06088481fdd645db1eef3d0f0e783ffabe0074"}],"stats":{"total":24,"additions":24,"deletions":0},"files":[{"sha":"fd3fb0de8164a75ef345d112d4780777ca1a3832","filename":".rubocop.yml","status":"modified","additions":24,"deletions":0,"changes":24,"blob_url":"https://github.com/anipos/sparrow/blob/238947c2440028cfff5388c7fba3aa4ca7ae92f5/.rubocop.yml","raw_url":"https://github.com/anipos/sparrow/raw/238947c2440028cfff5388c7fba3aa4ca7ae92f5/.rubocop.yml","contents_url":"https://api.github.com/repos/anipos/sparrow/contents/.rubocop.yml?ref=238947c2440028cfff5388c7fba3aa4ca7ae92f5","patch":"@@
+        -16,6 +16,18 @@ Layout/MultilineMethodCallIndentation:\n Layout/MultilineOperationIndentation:\n   EnforcedStyle:
+        indented\n \n+Layout/EmptyLinesAroundAttributeAccessor:\n+  Enabled: true\n+\n+Layout/SpaceAroundMethodCallOperator:\n+  Enabled:
+        true\n+\n+Lint/DeprecatedOpenSSLConstant:\n+  Enabled: true\n+\n+Lint/MixedRegexpCaptureTypes:\n+  Enabled:
+        true\n+\n RSpec/ExampleLength:\n   Enabled: false\n \n@@ -45,3 +57,15 @@ Lint/StructNewOverride:\n
+        \n Style/TrailingCommaInArrayLiteral:\n   EnforcedStyleForMultiline: comma\n+\n+Style/ExponentialNotation:\n+  Enabled:
+        true\n+\n+Style/RedundantRegexpCharacterClass:\n+  Enabled: true\n+\n+Style/RedundantRegexpEscape:\n+  Enabled:
+        true\n+\n+Style/SlicingWithRange:\n+  Enabled: true"}]}'
+  recorded_at: Tue, 16 Jun 2020 08:17:31 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/anipos/sparrow/branches/master
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 4.18.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - "<GITHUB_TOKEN>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 16 Jun 2020 08:17:31 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - GitHub.com
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4790'
+      X-Ratelimit-Reset:
+      - '1592296070'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      - Accept-Encoding, Accept, X-Requested-With
+      Etag:
+      - W/"9cfa8de846695058da8516bd74a12260"
+      X-Oauth-Scopes:
+      - repo
+      X-Accepted-Oauth-Scopes:
+      - ''
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval,
+        X-GitHub-Media-Type, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      X-Github-Request-Id:
+      - ECC6:25D2:AF9DEC:DD9744:5EE8801B
+    body:
+      encoding: ASCII-8BIT
+      string: '{"name":"master","commit":{"sha":"e576c84240351242a549e7e88079d854b464218a","node_id":"MDY6Q29tbWl0MjU0Mjg2MDYwOmU1NzZjODQyNDAzNTEyNDJhNTQ5ZTdlODgwNzlkODU0YjQ2NDIxOGE=","commit":{"author":{"name":"Shouichi
+        Kamiya","email":"shouichi.kamiya@gmail.com","date":"2020-06-16T08:07:00Z"},"committer":{"name":"GitHub","email":"noreply@github.com","date":"2020-06-16T08:07:00Z"},"message":"Add
+        empty erb template for testing (#27)\n\nThe file must exist in the master
+        branch because git-ops'' tag rewriting\nonly works with the master branch
+        (at least for now).","tree":{"sha":"2c82060309e7c59e525bb1cda9f53860f66f00d6","url":"https://api.github.com/repos/anipos/sparrow/git/trees/2c82060309e7c59e525bb1cda9f53860f66f00d6"},"url":"https://api.github.com/repos/anipos/sparrow/git/commits/e576c84240351242a549e7e88079d854b464218a","comment_count":0,"verification":{"verified":true,"reason":"valid","signature":"-----BEGIN
+        PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJe6H2kCRBK7hj4Ov3rIwAAdHIIAFf68NSBGt6LRQknKsUR00Fg\nrGderoJ6OJvmmQX8Wu95nkpz1zcWrgfIyHn9tTsJBxQpNWlMp/WDuAF4aEtCmSlw\nRnJvxGsKIPUCpH41V2laeJeyfhWWebx84diWDM4kDUnVr0Tx1e1Y/P8U/NvAJWEa\nkZ8qqkPq1FesHqSeFrQDWQu0QhGZ5QNkgYwLzfNYuily3CnfyN57v6b/1lTmzZrS\nVpvSG9jdA6exsm+PeDgh0nE41vDpKAoExb3o6wh8rORXBTNspm+NO1eqMddC/Jk+\ntDUHy96E0j90eQHZYrQgKFMhFjdKAepwTmNNmYJnV3OTtv+fMU8if5UbrOY/ebk=\n=FbJD\n-----END
+        PGP SIGNATURE-----\n","payload":"tree 2c82060309e7c59e525bb1cda9f53860f66f00d6\nparent
+        a552fd0a2c8a5e266756e8341750df364e577a4d\nauthor Shouichi Kamiya <shouichi.kamiya@gmail.com>
+        1592294820 +0900\ncommitter GitHub <noreply@github.com> 1592294820 +0000\n\nAdd
+        empty erb template for testing (#27)\n\nThe file must exist in the master
+        branch because git-ops'' tag rewriting\nonly works with the master branch
+        (at least for now)."}},"url":"https://api.github.com/repos/anipos/sparrow/commits/e576c84240351242a549e7e88079d854b464218a","html_url":"https://github.com/anipos/sparrow/commit/e576c84240351242a549e7e88079d854b464218a","comments_url":"https://api.github.com/repos/anipos/sparrow/commits/e576c84240351242a549e7e88079d854b464218a/comments","author":{"login":"shouichi","id":99586,"node_id":"MDQ6VXNlcjk5NTg2","avatar_url":"https://avatars0.githubusercontent.com/u/99586?v=4","gravatar_id":"","url":"https://api.github.com/users/shouichi","html_url":"https://github.com/shouichi","followers_url":"https://api.github.com/users/shouichi/followers","following_url":"https://api.github.com/users/shouichi/following{/other_user}","gists_url":"https://api.github.com/users/shouichi/gists{/gist_id}","starred_url":"https://api.github.com/users/shouichi/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/shouichi/subscriptions","organizations_url":"https://api.github.com/users/shouichi/orgs","repos_url":"https://api.github.com/users/shouichi/repos","events_url":"https://api.github.com/users/shouichi/events{/privacy}","received_events_url":"https://api.github.com/users/shouichi/received_events","type":"User","site_admin":false},"committer":{"login":"web-flow","id":19864447,"node_id":"MDQ6VXNlcjE5ODY0NDQ3","avatar_url":"https://avatars3.githubusercontent.com/u/19864447?v=4","gravatar_id":"","url":"https://api.github.com/users/web-flow","html_url":"https://github.com/web-flow","followers_url":"https://api.github.com/users/web-flow/followers","following_url":"https://api.github.com/users/web-flow/following{/other_user}","gists_url":"https://api.github.com/users/web-flow/gists{/gist_id}","starred_url":"https://api.github.com/users/web-flow/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/web-flow/subscriptions","organizations_url":"https://api.github.com/users/web-flow/orgs","repos_url":"https://api.github.com/users/web-flow/repos","events_url":"https://api.github.com/users/web-flow/events{/privacy}","received_events_url":"https://api.github.com/users/web-flow/received_events","type":"User","site_admin":false},"parents":[{"sha":"a552fd0a2c8a5e266756e8341750df364e577a4d","url":"https://api.github.com/repos/anipos/sparrow/commits/a552fd0a2c8a5e266756e8341750df364e577a4d","html_url":"https://github.com/anipos/sparrow/commit/a552fd0a2c8a5e266756e8341750df364e577a4d"}]},"_links":{"self":"https://api.github.com/repos/anipos/sparrow/branches/master","html":"https://github.com/anipos/sparrow/tree/master"},"protected":true,"protection":{"enabled":true,"required_status_checks":{"enforcement_level":"everyone","contexts":["ci/circleci:
+        build","build"]}},"protection_url":"https://api.github.com/repos/anipos/sparrow/branches/master/protection"}'
+  recorded_at: Tue, 16 Jun 2020 08:17:31 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/anipos/sparrow/contents/spec/fixtures/git_ops/template.erb?ref=e576c84240351242a549e7e88079d854b464218a
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 4.18.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - "<GITHUB_TOKEN>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 16 Jun 2020 08:17:32 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - GitHub.com
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4789'
+      X-Ratelimit-Reset:
+      - '1592296071'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      - Accept-Encoding, Accept, X-Requested-With
+      Etag:
+      - W/"4525027e3d9fcb59367bf84ba971513514ce15cf"
+      Last-Modified:
+      - Tue, 16 Jun 2020 08:07:00 GMT
+      X-Oauth-Scopes:
+      - repo
+      X-Accepted-Oauth-Scopes:
+      - ''
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval,
+        X-GitHub-Media-Type, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      X-Github-Request-Id:
+      - ECC8:7A51:552A04:6C44D4:5EE8801B
+    body:
+      encoding: ASCII-8BIT
+      string: '{"name":"template.erb","path":"spec/fixtures/git_ops/template.erb","sha":"4525027e3d9fcb59367bf84ba971513514ce15cf","size":11,"url":"https://api.github.com/repos/anipos/sparrow/contents/spec/fixtures/git_ops/template.erb?ref=e576c84240351242a549e7e88079d854b464218a","html_url":"https://github.com/anipos/sparrow/blob/e576c84240351242a549e7e88079d854b464218a/spec/fixtures/git_ops/template.erb","git_url":"https://api.github.com/repos/anipos/sparrow/git/blobs/4525027e3d9fcb59367bf84ba971513514ce15cf","download_url":"https://raw.githubusercontent.com/anipos/sparrow/e576c84240351242a549e7e88079d854b464218a/spec/fixtures/git_ops/template.erb","type":"file","content":"PCU9IHRhZyAlPgo=\n","encoding":"base64","_links":{"self":"https://api.github.com/repos/anipos/sparrow/contents/spec/fixtures/git_ops/template.erb?ref=e576c84240351242a549e7e88079d854b464218a","git":"https://api.github.com/repos/anipos/sparrow/git/blobs/4525027e3d9fcb59367bf84ba971513514ce15cf","html":"https://github.com/anipos/sparrow/blob/e576c84240351242a549e7e88079d854b464218a/spec/fixtures/git_ops/template.erb"}}'
+  recorded_at: Tue, 16 Jun 2020 08:17:32 GMT
+- request:
+    method: post
+    uri: https://api.github.com/repos/anipos/sparrow/git/blobs
+    body:
+      encoding: UTF-8
+      string: '{"content":"238947c2440028cfff5388c7fba3aa4ca7ae92f5\n","encoding":"utf-8"}'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 4.18.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - "<GITHUB_TOKEN>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Tue, 16 Jun 2020 08:17:32 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '153'
+      Server:
+      - GitHub.com
+      Status:
+      - 201 Created
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4788'
+      X-Ratelimit-Reset:
+      - '1592296071'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      - Accept-Encoding, Accept, X-Requested-With
+      Etag:
+      - '"e98fcfee6f7b5edb86d347cd8dc98ba6"'
+      X-Oauth-Scopes:
+      - repo
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Location:
+      - https://api.github.com/repos/anipos/sparrow/git/blobs/b9d5b68a28a6f0bdac6c2479c47781d9eb209d59
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval,
+        X-GitHub-Media-Type, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      X-Github-Request-Id:
+      - ECCA:7A55:B79CC2:E4C60F:5EE8801C
+    body:
+      encoding: UTF-8
+      string: '{"sha":"b9d5b68a28a6f0bdac6c2479c47781d9eb209d59","url":"https://api.github.com/repos/anipos/sparrow/git/blobs/b9d5b68a28a6f0bdac6c2479c47781d9eb209d59"}'
+  recorded_at: Tue, 16 Jun 2020 08:17:32 GMT
+- request:
+    method: post
+    uri: https://api.github.com/repos/anipos/sparrow/git/trees
+    body:
+      encoding: UTF-8
+      string: '{"base_tree":"e576c84240351242a549e7e88079d854b464218a","tree":[{"path":"spec/fixtures/git_ops/rewritten","mode":"100644","type":"blob","sha":"b9d5b68a28a6f0bdac6c2479c47781d9eb209d59"}]}'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 4.18.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - "<GITHUB_TOKEN>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Tue, 16 Jun 2020 08:17:33 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '5023'
+      Server:
+      - GitHub.com
+      Status:
+      - 201 Created
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4787'
+      X-Ratelimit-Reset:
+      - '1592296071'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      - Accept-Encoding, Accept, X-Requested-With
+      Etag:
+      - '"978bd856fc477755dcc6c726839a5021"'
+      X-Oauth-Scopes:
+      - repo
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Location:
+      - https://api.github.com/repos/anipos/sparrow/git/trees/cb0ab623ade50a10d1f66b443cca6e02cc65ea12
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval,
+        X-GitHub-Media-Type, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      X-Github-Request-Id:
+      - ECCC:7A55:B79CD6:E4C62A:5EE8801C
+    body:
+      encoding: UTF-8
+      string: '{"sha":"cb0ab623ade50a10d1f66b443cca6e02cc65ea12","url":"https://api.github.com/repos/anipos/sparrow/git/trees/cb0ab623ade50a10d1f66b443cca6e02cc65ea12","tree":[{"path":".circleci","mode":"040000","type":"tree","sha":"ca97f00e3b7dbff2e924da00417639e5cc2a23bc","url":"https://api.github.com/repos/anipos/sparrow/git/trees/ca97f00e3b7dbff2e924da00417639e5cc2a23bc"},{"path":".dependabot","mode":"040000","type":"tree","sha":"2d948e41d4ec322d98c19bb4b4ec54454c9f7340","url":"https://api.github.com/repos/anipos/sparrow/git/trees/2d948e41d4ec322d98c19bb4b4ec54454c9f7340"},{"path":".github","mode":"040000","type":"tree","sha":"665b73bd948ff9e402b52dd7a6dc67f45c977fae","url":"https://api.github.com/repos/anipos/sparrow/git/trees/665b73bd948ff9e402b52dd7a6dc67f45c977fae"},{"path":".gitignore","mode":"100644","type":"blob","sha":"6eb1e85c5673ba995caa98c37ff547f09e750fb5","size":153,"url":"https://api.github.com/repos/anipos/sparrow/git/blobs/6eb1e85c5673ba995caa98c37ff547f09e750fb5"},{"path":".rspec","mode":"100644","type":"blob","sha":"5d9dfb3059dad4c5b9aa8b674101da7a82c37a05","size":104,"url":"https://api.github.com/repos/anipos/sparrow/git/blobs/5d9dfb3059dad4c5b9aa8b674101da7a82c37a05"},{"path":".rubocop.yml","mode":"100644","type":"blob","sha":"fd3fb0de8164a75ef345d112d4780777ca1a3832","size":1178,"url":"https://api.github.com/repos/anipos/sparrow/git/blobs/fd3fb0de8164a75ef345d112d4780777ca1a3832"},{"path":"Dockerfile","mode":"100644","type":"blob","sha":"421628dde0e763c6b502d2fd1175a45d3e440fae","size":479,"url":"https://api.github.com/repos/anipos/sparrow/git/blobs/421628dde0e763c6b502d2fd1175a45d3e440fae"},{"path":"Dockerfile.dev","mode":"100644","type":"blob","sha":"d5d63104df73c73bf642e72197038d095bf62f9a","size":174,"url":"https://api.github.com/repos/anipos/sparrow/git/blobs/d5d63104df73c73bf642e72197038d095bf62f9a"},{"path":"Gemfile","mode":"100644","type":"blob","sha":"53f6055a0ebbbbd76d33b40566ff417ce205ed5e","size":194,"url":"https://api.github.com/repos/anipos/sparrow/git/blobs/53f6055a0ebbbbd76d33b40566ff417ce205ed5e"},{"path":"Gemfile.lock","mode":"100644","type":"blob","sha":"570c5b88f3904c7150137b849fa2faaedcd54641","size":4040,"url":"https://api.github.com/repos/anipos/sparrow/git/blobs/570c5b88f3904c7150137b849fa2faaedcd54641"},{"path":"LICENSE","mode":"100644","type":"blob","sha":"b0fa306b876a4f68a21915b3a4a09ab9316ddfdf","size":10767,"url":"https://api.github.com/repos/anipos/sparrow/git/blobs/b0fa306b876a4f68a21915b3a4a09ab9316ddfdf"},{"path":"Makefile","mode":"100644","type":"blob","sha":"d1d026a4524f5bbc9eedcb891ad50fcfe4e2df58","size":425,"url":"https://api.github.com/repos/anipos/sparrow/git/blobs/d1d026a4524f5bbc9eedcb891ad50fcfe4e2df58"},{"path":"README.md","mode":"100644","type":"blob","sha":"6dfedd3ed2af45abc26fd2bb06f99d9bdb6d04e2","size":3646,"url":"https://api.github.com/repos/anipos/sparrow/git/blobs/6dfedd3ed2af45abc26fd2bb06f99d9bdb6d04e2"},{"path":"Rakefile","mode":"100644","type":"blob","sha":"b6ae734104e73e30e8f548095fb9b54f4e2cddbb","size":145,"url":"https://api.github.com/repos/anipos/sparrow/git/blobs/b6ae734104e73e30e8f548095fb9b54f4e2cddbb"},{"path":"bin","mode":"040000","type":"tree","sha":"18cf968346982b1cf744e8fc35adf78748fddc1c","url":"https://api.github.com/repos/anipos/sparrow/git/trees/18cf968346982b1cf744e8fc35adf78748fddc1c"},{"path":"codecov.yml","mode":"100644","type":"blob","sha":"ad110018291a2a8d344a40732882258913df59a9","size":185,"url":"https://api.github.com/repos/anipos/sparrow/git/blobs/ad110018291a2a8d344a40732882258913df59a9"},{"path":"docker-compose.yml","mode":"100644","type":"blob","sha":"67090eff36117ba1a869f1ea2146b5a51247f145","size":757,"url":"https://api.github.com/repos/anipos/sparrow/git/blobs/67090eff36117ba1a869f1ea2146b5a51247f145"},{"path":"docs","mode":"040000","type":"tree","sha":"0fc63d622703522f52f86b2ea6ee6633be38ebef","url":"https://api.github.com/repos/anipos/sparrow/git/trees/0fc63d622703522f52f86b2ea6ee6633be38ebef"},{"path":"exe","mode":"040000","type":"tree","sha":"e3fcf11c4abf781f4ef0afb3395910517c7e6335","url":"https://api.github.com/repos/anipos/sparrow/git/trees/e3fcf11c4abf781f4ef0afb3395910517c7e6335"},{"path":"lib","mode":"040000","type":"tree","sha":"4769c473fb4c8aa8ab34df5a5b1281f3636149de","url":"https://api.github.com/repos/anipos/sparrow/git/trees/4769c473fb4c8aa8ab34df5a5b1281f3636149de"},{"path":"sparrow.example.yml","mode":"100644","type":"blob","sha":"9067b71b486b5b1a6a2c246f1b45d75334ba8351","size":466,"url":"https://api.github.com/repos/anipos/sparrow/git/blobs/9067b71b486b5b1a6a2c246f1b45d75334ba8351"},{"path":"sparrow.gemspec","mode":"100644","type":"blob","sha":"8a455e8c5ecfa0531dac57f61996ce988fbcc285","size":2531,"url":"https://api.github.com/repos/anipos/sparrow/git/blobs/8a455e8c5ecfa0531dac57f61996ce988fbcc285"},{"path":"spec","mode":"040000","type":"tree","sha":"0fa820e42ec3a6e6918d9757e92e04d30acd7d19","url":"https://api.github.com/repos/anipos/sparrow/git/trees/0fa820e42ec3a6e6918d9757e92e04d30acd7d19"}],"truncated":false}'
+  recorded_at: Tue, 16 Jun 2020 08:17:33 GMT
+- request:
+    method: post
+    uri: https://api.github.com/repos/anipos/sparrow/git/commits
+    body:
+      encoding: UTF-8
+      string: '{"message":"Update tag to 238947c2440028cfff5388c7fba3aa4ca7ae92f5\n\n>
+        Enable newly added rubocop lints (#25)\n\nhttps://github.com/anipos/sparrow/commit/238947c2440028cfff5388c7fba3aa4ca7ae92f5\n\n","tree":"cb0ab623ade50a10d1f66b443cca6e02cc65ea12","parents":["e576c84240351242a549e7e88079d854b464218a"]}'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 4.18.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - "<GITHUB_TOKEN>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Tue, 16 Jun 2020 08:17:33 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1256'
+      Server:
+      - GitHub.com
+      Status:
+      - 201 Created
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4786'
+      X-Ratelimit-Reset:
+      - '1592296071'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      - Accept-Encoding, Accept, X-Requested-With
+      Etag:
+      - '"03f23aa0e5342cb6743505a479b1eda5"'
+      X-Oauth-Scopes:
+      - repo
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Location:
+      - https://api.github.com/repos/anipos/sparrow/git/commits/aee5ea92cd9de5cb1f26334d5fc000b6c06a8c55
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval,
+        X-GitHub-Media-Type, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      X-Github-Request-Id:
+      - ECCE:7A51:552A13:6C44EA:5EE8801D
+    body:
+      encoding: UTF-8
+      string: '{"sha":"aee5ea92cd9de5cb1f26334d5fc000b6c06a8c55","node_id":"MDY6Q29tbWl0MjU0Mjg2MDYwOmFlZTVlYTkyY2Q5ZGU1Y2IxZjI2MzM0ZDVmYzAwMGI2YzA2YThjNTU=","url":"https://api.github.com/repos/anipos/sparrow/git/commits/aee5ea92cd9de5cb1f26334d5fc000b6c06a8c55","html_url":"https://github.com/anipos/sparrow/commit/aee5ea92cd9de5cb1f26334d5fc000b6c06a8c55","author":{"name":"Shouichi
+        Kamiya","email":"shouichi.kamiya@gmail.com","date":"2020-06-16T08:17:33Z"},"committer":{"name":"Shouichi
+        Kamiya","email":"shouichi.kamiya@gmail.com","date":"2020-06-16T08:17:33Z"},"tree":{"sha":"cb0ab623ade50a10d1f66b443cca6e02cc65ea12","url":"https://api.github.com/repos/anipos/sparrow/git/trees/cb0ab623ade50a10d1f66b443cca6e02cc65ea12"},"message":"Update
+        tag to 238947c2440028cfff5388c7fba3aa4ca7ae92f5\n\n> Enable newly added rubocop
+        lints (#25)\n\nhttps://github.com/anipos/sparrow/commit/238947c2440028cfff5388c7fba3aa4ca7ae92f5","parents":[{"sha":"e576c84240351242a549e7e88079d854b464218a","url":"https://api.github.com/repos/anipos/sparrow/git/commits/e576c84240351242a549e7e88079d854b464218a","html_url":"https://github.com/anipos/sparrow/commit/e576c84240351242a549e7e88079d854b464218a"}],"verification":{"verified":false,"reason":"unsigned","signature":null,"payload":null}}'
+  recorded_at: Tue, 16 Jun 2020 08:17:33 GMT
+- request:
+    method: post
+    uri: https://api.github.com/repos/anipos/sparrow/git/refs
+    body:
+      encoding: UTF-8
+      string: '{"ref":"refs/heads/gitops-238947c2440028cfff5388c7fba3aa4ca7ae92f5-spec","sha":"aee5ea92cd9de5cb1f26334d5fc000b6c06a8c55"}'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 4.18.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - "<GITHUB_TOKEN>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Tue, 16 Jun 2020 08:17:34 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '495'
+      Server:
+      - GitHub.com
+      Status:
+      - 201 Created
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4785'
+      X-Ratelimit-Reset:
+      - '1592296071'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      - Accept-Encoding, Accept, X-Requested-With
+      Etag:
+      - '"24aa27b389d3fb6c5d03c19a29ac6146"'
+      X-Oauth-Scopes:
+      - repo
+      X-Accepted-Oauth-Scopes:
+      - repo
+      Location:
+      - https://api.github.com/repos/anipos/sparrow/git/refs/heads/gitops-238947c2440028cfff5388c7fba3aa4ca7ae92f5-spec
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval,
+        X-GitHub-Media-Type, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      X-Github-Request-Id:
+      - ECD0:4B7A:B263BE:E04758:5EE8801D
+    body:
+      encoding: UTF-8
+      string: '{"ref":"refs/heads/gitops-238947c2440028cfff5388c7fba3aa4ca7ae92f5-spec","node_id":"MDM6UmVmMjU0Mjg2MDYwOnJlZnMvaGVhZHMvZ2l0b3BzLTIzODk0N2MyNDQwMDI4Y2ZmZjUzODhjN2ZiYTNhYTRjYTdhZTkyZjUtc3BlYw==","url":"https://api.github.com/repos/anipos/sparrow/git/refs/heads/gitops-238947c2440028cfff5388c7fba3aa4ca7ae92f5-spec","object":{"sha":"aee5ea92cd9de5cb1f26334d5fc000b6c06a8c55","type":"commit","url":"https://api.github.com/repos/anipos/sparrow/git/commits/aee5ea92cd9de5cb1f26334d5fc000b6c06a8c55"}}'
+  recorded_at: Tue, 16 Jun 2020 08:17:34 GMT
+- request:
+    method: post
+    uri: https://api.github.com/repos/anipos/sparrow/pulls
+    body:
+      encoding: UTF-8
+      string: '{"base":"master","head":"refs/heads/gitops-238947c2440028cfff5388c7fba3aa4ca7ae92f5-spec","title":"Update
+        tag to 238947c2440028cfff5388c7fba3aa4ca7ae92f5","body":"> Enable newly added
+        rubocop lints (#25)\n\nhttps://github.com/anipos/sparrow/commit/238947c2440028cfff5388c7fba3aa4ca7ae92f5\n"}'
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 4.18.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - "<GITHUB_TOKEN>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Tue, 16 Jun 2020 08:17:36 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '14823'
+      Server:
+      - GitHub.com
+      Status:
+      - 201 Created
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4784'
+      X-Ratelimit-Reset:
+      - '1592296071'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      - Accept-Encoding, Accept, X-Requested-With
+      Etag:
+      - '"55732d3092dd84f9c968dc7c840aad62"'
+      X-Oauth-Scopes:
+      - repo
+      X-Accepted-Oauth-Scopes:
+      - ''
+      Location:
+      - https://api.github.com/repos/anipos/sparrow/pulls/28
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval,
+        X-GitHub-Media-Type, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      X-Github-Request-Id:
+      - ECD2:4D3E:83B588:A5B432:5EE8801E
+    body:
+      encoding: UTF-8
+      string: '{"url":"https://api.github.com/repos/anipos/sparrow/pulls/28","id":435051111,"node_id":"MDExOlB1bGxSZXF1ZXN0NDM1MDUxMTEx","html_url":"https://github.com/anipos/sparrow/pull/28","diff_url":"https://github.com/anipos/sparrow/pull/28.diff","patch_url":"https://github.com/anipos/sparrow/pull/28.patch","issue_url":"https://api.github.com/repos/anipos/sparrow/issues/28","number":28,"state":"open","locked":false,"title":"Update
+        tag to 238947c2440028cfff5388c7fba3aa4ca7ae92f5","user":{"login":"shouichi","id":99586,"node_id":"MDQ6VXNlcjk5NTg2","avatar_url":"https://avatars0.githubusercontent.com/u/99586?v=4","gravatar_id":"","url":"https://api.github.com/users/shouichi","html_url":"https://github.com/shouichi","followers_url":"https://api.github.com/users/shouichi/followers","following_url":"https://api.github.com/users/shouichi/following{/other_user}","gists_url":"https://api.github.com/users/shouichi/gists{/gist_id}","starred_url":"https://api.github.com/users/shouichi/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/shouichi/subscriptions","organizations_url":"https://api.github.com/users/shouichi/orgs","repos_url":"https://api.github.com/users/shouichi/repos","events_url":"https://api.github.com/users/shouichi/events{/privacy}","received_events_url":"https://api.github.com/users/shouichi/received_events","type":"User","site_admin":false},"body":">
+        Enable newly added rubocop lints (#25)\n\nhttps://github.com/anipos/sparrow/commit/238947c2440028cfff5388c7fba3aa4ca7ae92f5\n","created_at":"2020-06-16T08:17:35Z","updated_at":"2020-06-16T08:17:35Z","closed_at":null,"merged_at":null,"merge_commit_sha":null,"assignee":null,"assignees":[],"requested_reviewers":[],"requested_teams":[],"labels":[],"milestone":null,"draft":false,"commits_url":"https://api.github.com/repos/anipos/sparrow/pulls/28/commits","review_comments_url":"https://api.github.com/repos/anipos/sparrow/pulls/28/comments","review_comment_url":"https://api.github.com/repos/anipos/sparrow/pulls/comments{/number}","comments_url":"https://api.github.com/repos/anipos/sparrow/issues/28/comments","statuses_url":"https://api.github.com/repos/anipos/sparrow/statuses/aee5ea92cd9de5cb1f26334d5fc000b6c06a8c55","head":{"label":"anipos:gitops-238947c2440028cfff5388c7fba3aa4ca7ae92f5-spec","ref":"gitops-238947c2440028cfff5388c7fba3aa4ca7ae92f5-spec","sha":"aee5ea92cd9de5cb1f26334d5fc000b6c06a8c55","user":{"login":"anipos","id":54934369,"node_id":"MDEyOk9yZ2FuaXphdGlvbjU0OTM0MzY5","avatar_url":"https://avatars2.githubusercontent.com/u/54934369?v=4","gravatar_id":"","url":"https://api.github.com/users/anipos","html_url":"https://github.com/anipos","followers_url":"https://api.github.com/users/anipos/followers","following_url":"https://api.github.com/users/anipos/following{/other_user}","gists_url":"https://api.github.com/users/anipos/gists{/gist_id}","starred_url":"https://api.github.com/users/anipos/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/anipos/subscriptions","organizations_url":"https://api.github.com/users/anipos/orgs","repos_url":"https://api.github.com/users/anipos/repos","events_url":"https://api.github.com/users/anipos/events{/privacy}","received_events_url":"https://api.github.com/users/anipos/received_events","type":"Organization","site_admin":false},"repo":{"id":254286060,"node_id":"MDEwOlJlcG9zaXRvcnkyNTQyODYwNjA=","name":"sparrow","full_name":"anipos/sparrow","private":false,"owner":{"login":"anipos","id":54934369,"node_id":"MDEyOk9yZ2FuaXphdGlvbjU0OTM0MzY5","avatar_url":"https://avatars2.githubusercontent.com/u/54934369?v=4","gravatar_id":"","url":"https://api.github.com/users/anipos","html_url":"https://github.com/anipos","followers_url":"https://api.github.com/users/anipos/followers","following_url":"https://api.github.com/users/anipos/following{/other_user}","gists_url":"https://api.github.com/users/anipos/gists{/gist_id}","starred_url":"https://api.github.com/users/anipos/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/anipos/subscriptions","organizations_url":"https://api.github.com/users/anipos/orgs","repos_url":"https://api.github.com/users/anipos/repos","events_url":"https://api.github.com/users/anipos/events{/privacy}","received_events_url":"https://api.github.com/users/anipos/received_events","type":"Organization","site_admin":false},"html_url":"https://github.com/anipos/sparrow","description":"Sparrow
+        is a bot runs jobs on Cloud Build events.","fork":false,"url":"https://api.github.com/repos/anipos/sparrow","forks_url":"https://api.github.com/repos/anipos/sparrow/forks","keys_url":"https://api.github.com/repos/anipos/sparrow/keys{/key_id}","collaborators_url":"https://api.github.com/repos/anipos/sparrow/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/anipos/sparrow/teams","hooks_url":"https://api.github.com/repos/anipos/sparrow/hooks","issue_events_url":"https://api.github.com/repos/anipos/sparrow/issues/events{/number}","events_url":"https://api.github.com/repos/anipos/sparrow/events","assignees_url":"https://api.github.com/repos/anipos/sparrow/assignees{/user}","branches_url":"https://api.github.com/repos/anipos/sparrow/branches{/branch}","tags_url":"https://api.github.com/repos/anipos/sparrow/tags","blobs_url":"https://api.github.com/repos/anipos/sparrow/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/anipos/sparrow/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/anipos/sparrow/git/refs{/sha}","trees_url":"https://api.github.com/repos/anipos/sparrow/git/trees{/sha}","statuses_url":"https://api.github.com/repos/anipos/sparrow/statuses/{sha}","languages_url":"https://api.github.com/repos/anipos/sparrow/languages","stargazers_url":"https://api.github.com/repos/anipos/sparrow/stargazers","contributors_url":"https://api.github.com/repos/anipos/sparrow/contributors","subscribers_url":"https://api.github.com/repos/anipos/sparrow/subscribers","subscription_url":"https://api.github.com/repos/anipos/sparrow/subscription","commits_url":"https://api.github.com/repos/anipos/sparrow/commits{/sha}","git_commits_url":"https://api.github.com/repos/anipos/sparrow/git/commits{/sha}","comments_url":"https://api.github.com/repos/anipos/sparrow/comments{/number}","issue_comment_url":"https://api.github.com/repos/anipos/sparrow/issues/comments{/number}","contents_url":"https://api.github.com/repos/anipos/sparrow/contents/{+path}","compare_url":"https://api.github.com/repos/anipos/sparrow/compare/{base}...{head}","merges_url":"https://api.github.com/repos/anipos/sparrow/merges","archive_url":"https://api.github.com/repos/anipos/sparrow/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/anipos/sparrow/downloads","issues_url":"https://api.github.com/repos/anipos/sparrow/issues{/number}","pulls_url":"https://api.github.com/repos/anipos/sparrow/pulls{/number}","milestones_url":"https://api.github.com/repos/anipos/sparrow/milestones{/number}","notifications_url":"https://api.github.com/repos/anipos/sparrow/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/anipos/sparrow/labels{/name}","releases_url":"https://api.github.com/repos/anipos/sparrow/releases{/id}","deployments_url":"https://api.github.com/repos/anipos/sparrow/deployments","created_at":"2020-04-09T06:08:36Z","updated_at":"2020-06-16T08:07:04Z","pushed_at":"2020-06-16T08:17:34Z","git_url":"git://github.com/anipos/sparrow.git","ssh_url":"git@github.com:anipos/sparrow.git","clone_url":"https://github.com/anipos/sparrow.git","svn_url":"https://github.com/anipos/sparrow","homepage":"","size":60,"stargazers_count":0,"watchers_count":0,"language":"Ruby","has_issues":false,"has_projects":false,"has_downloads":true,"has_wiki":false,"has_pages":false,"forks_count":0,"mirror_url":null,"archived":false,"disabled":false,"open_issues_count":1,"license":{"key":"apache-2.0","name":"Apache
+        License 2.0","spdx_id":"Apache-2.0","url":"https://api.github.com/licenses/apache-2.0","node_id":"MDc6TGljZW5zZTI="},"forks":0,"open_issues":1,"watchers":0,"default_branch":"master"}},"base":{"label":"anipos:master","ref":"master","sha":"e576c84240351242a549e7e88079d854b464218a","user":{"login":"anipos","id":54934369,"node_id":"MDEyOk9yZ2FuaXphdGlvbjU0OTM0MzY5","avatar_url":"https://avatars2.githubusercontent.com/u/54934369?v=4","gravatar_id":"","url":"https://api.github.com/users/anipos","html_url":"https://github.com/anipos","followers_url":"https://api.github.com/users/anipos/followers","following_url":"https://api.github.com/users/anipos/following{/other_user}","gists_url":"https://api.github.com/users/anipos/gists{/gist_id}","starred_url":"https://api.github.com/users/anipos/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/anipos/subscriptions","organizations_url":"https://api.github.com/users/anipos/orgs","repos_url":"https://api.github.com/users/anipos/repos","events_url":"https://api.github.com/users/anipos/events{/privacy}","received_events_url":"https://api.github.com/users/anipos/received_events","type":"Organization","site_admin":false},"repo":{"id":254286060,"node_id":"MDEwOlJlcG9zaXRvcnkyNTQyODYwNjA=","name":"sparrow","full_name":"anipos/sparrow","private":false,"owner":{"login":"anipos","id":54934369,"node_id":"MDEyOk9yZ2FuaXphdGlvbjU0OTM0MzY5","avatar_url":"https://avatars2.githubusercontent.com/u/54934369?v=4","gravatar_id":"","url":"https://api.github.com/users/anipos","html_url":"https://github.com/anipos","followers_url":"https://api.github.com/users/anipos/followers","following_url":"https://api.github.com/users/anipos/following{/other_user}","gists_url":"https://api.github.com/users/anipos/gists{/gist_id}","starred_url":"https://api.github.com/users/anipos/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/anipos/subscriptions","organizations_url":"https://api.github.com/users/anipos/orgs","repos_url":"https://api.github.com/users/anipos/repos","events_url":"https://api.github.com/users/anipos/events{/privacy}","received_events_url":"https://api.github.com/users/anipos/received_events","type":"Organization","site_admin":false},"html_url":"https://github.com/anipos/sparrow","description":"Sparrow
+        is a bot runs jobs on Cloud Build events.","fork":false,"url":"https://api.github.com/repos/anipos/sparrow","forks_url":"https://api.github.com/repos/anipos/sparrow/forks","keys_url":"https://api.github.com/repos/anipos/sparrow/keys{/key_id}","collaborators_url":"https://api.github.com/repos/anipos/sparrow/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/anipos/sparrow/teams","hooks_url":"https://api.github.com/repos/anipos/sparrow/hooks","issue_events_url":"https://api.github.com/repos/anipos/sparrow/issues/events{/number}","events_url":"https://api.github.com/repos/anipos/sparrow/events","assignees_url":"https://api.github.com/repos/anipos/sparrow/assignees{/user}","branches_url":"https://api.github.com/repos/anipos/sparrow/branches{/branch}","tags_url":"https://api.github.com/repos/anipos/sparrow/tags","blobs_url":"https://api.github.com/repos/anipos/sparrow/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/anipos/sparrow/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/anipos/sparrow/git/refs{/sha}","trees_url":"https://api.github.com/repos/anipos/sparrow/git/trees{/sha}","statuses_url":"https://api.github.com/repos/anipos/sparrow/statuses/{sha}","languages_url":"https://api.github.com/repos/anipos/sparrow/languages","stargazers_url":"https://api.github.com/repos/anipos/sparrow/stargazers","contributors_url":"https://api.github.com/repos/anipos/sparrow/contributors","subscribers_url":"https://api.github.com/repos/anipos/sparrow/subscribers","subscription_url":"https://api.github.com/repos/anipos/sparrow/subscription","commits_url":"https://api.github.com/repos/anipos/sparrow/commits{/sha}","git_commits_url":"https://api.github.com/repos/anipos/sparrow/git/commits{/sha}","comments_url":"https://api.github.com/repos/anipos/sparrow/comments{/number}","issue_comment_url":"https://api.github.com/repos/anipos/sparrow/issues/comments{/number}","contents_url":"https://api.github.com/repos/anipos/sparrow/contents/{+path}","compare_url":"https://api.github.com/repos/anipos/sparrow/compare/{base}...{head}","merges_url":"https://api.github.com/repos/anipos/sparrow/merges","archive_url":"https://api.github.com/repos/anipos/sparrow/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/anipos/sparrow/downloads","issues_url":"https://api.github.com/repos/anipos/sparrow/issues{/number}","pulls_url":"https://api.github.com/repos/anipos/sparrow/pulls{/number}","milestones_url":"https://api.github.com/repos/anipos/sparrow/milestones{/number}","notifications_url":"https://api.github.com/repos/anipos/sparrow/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/anipos/sparrow/labels{/name}","releases_url":"https://api.github.com/repos/anipos/sparrow/releases{/id}","deployments_url":"https://api.github.com/repos/anipos/sparrow/deployments","created_at":"2020-04-09T06:08:36Z","updated_at":"2020-06-16T08:07:04Z","pushed_at":"2020-06-16T08:17:34Z","git_url":"git://github.com/anipos/sparrow.git","ssh_url":"git@github.com:anipos/sparrow.git","clone_url":"https://github.com/anipos/sparrow.git","svn_url":"https://github.com/anipos/sparrow","homepage":"","size":60,"stargazers_count":0,"watchers_count":0,"language":"Ruby","has_issues":false,"has_projects":false,"has_downloads":true,"has_wiki":false,"has_pages":false,"forks_count":0,"mirror_url":null,"archived":false,"disabled":false,"open_issues_count":1,"license":{"key":"apache-2.0","name":"Apache
+        License 2.0","spdx_id":"Apache-2.0","url":"https://api.github.com/licenses/apache-2.0","node_id":"MDc6TGljZW5zZTI="},"forks":0,"open_issues":1,"watchers":0,"default_branch":"master"}},"_links":{"self":{"href":"https://api.github.com/repos/anipos/sparrow/pulls/28"},"html":{"href":"https://github.com/anipos/sparrow/pull/28"},"issue":{"href":"https://api.github.com/repos/anipos/sparrow/issues/28"},"comments":{"href":"https://api.github.com/repos/anipos/sparrow/issues/28/comments"},"review_comments":{"href":"https://api.github.com/repos/anipos/sparrow/pulls/28/comments"},"review_comment":{"href":"https://api.github.com/repos/anipos/sparrow/pulls/comments{/number}"},"commits":{"href":"https://api.github.com/repos/anipos/sparrow/pulls/28/commits"},"statuses":{"href":"https://api.github.com/repos/anipos/sparrow/statuses/aee5ea92cd9de5cb1f26334d5fc000b6c06a8c55"}},"author_association":"MEMBER","active_lock_reason":null,"merged":false,"mergeable":null,"rebaseable":null,"mergeable_state":"unknown","merged_by":null,"comments":0,"review_comments":0,"maintainer_can_modify":false,"commits":1,"additions":1,"deletions":0,"changed_files":1}'
+  recorded_at: Tue, 16 Jun 2020 08:17:36 GMT
+recorded_with: VCR 6.0.0

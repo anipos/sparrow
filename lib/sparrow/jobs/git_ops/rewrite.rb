@@ -26,6 +26,7 @@ module Sparrow
           @out_path = out_path
         end
 
+        # rubocop:disable Metrics/MethodLength
         def run
           unless match?
             logger.info("build does not match, skipping")
@@ -33,12 +34,15 @@ module Sparrow
           end
 
           begin
-            create_pull_request
+            pr = create_pull_request
             logger.info("created a pull request")
+            pr
           rescue Octokit::UnprocessableEntity
             logger.info("pull request exists, skipping")
+            nil
           end
         end
+        # rubocop:enable Metrics/MethodLength
 
         private
 
