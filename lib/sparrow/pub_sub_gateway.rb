@@ -92,9 +92,7 @@ module Sparrow
       end
 
       def create_subscription(topic_name, subscription_name)
-        unless emulator?
-          raise Sparrow::Error, "create subscription iff emulator"
-        end
+        raise Sparrow::Error, "create subscription iff emulator" unless emulator?
 
         topic = topic(topic_name)
         topic.subscribe(subscription_name)
