@@ -8,6 +8,10 @@ jobs:
   - class: Slack
     project_id: whatever
     subscription: slack
+    class_args:
+      only:
+        - SUCCESS
+        - FAILURE
 
   - class: GitOps
     project_id: whatever

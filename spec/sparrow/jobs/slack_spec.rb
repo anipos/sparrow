@@ -62,10 +62,21 @@ RSpec.describe Sparrow::Jobs::Slack do
     slack.run(message)
   end
 
-  it "#run skips if build does not match" do
+  it "#run skips if build is not repo source" do
     expect(message).to receive(:data).and_return("{}")
     expect(build).to receive(:repo_source?).and_return(false)
     expect(slack).to receive(:build).and_return(build)
+    expect(slack).not_to receive(:faraday)
+    slack.run(message)
+  end
+
+  it "#run skips if status does not match" do
+    slack = described_class.new("only" => %w[SUCCESS FAILURE])
+
+    expect(message).to receive(:data).and_return("{}")
+    expect(build).to receive(:repo_source?).and_return(true)
+    expect(build).to receive(:status).and_return("WORKING")
+    expect(slack).to receive(:build).at_least(:once).and_return(build)
     expect(slack).not_to receive(:faraday)
     slack.run(message)
   end
