@@ -37,8 +37,8 @@ module Sparrow
             pr = create_pull_request
             logger.info("created a pull request")
             pr
-          rescue Octokit::UnprocessableEntity
-            logger.info("pull request exists, skipping")
+          rescue Octokit::UnprocessableEntity => e
+            logger.info("pull request exists, skipping", error: e)
             nil
           end
         end
