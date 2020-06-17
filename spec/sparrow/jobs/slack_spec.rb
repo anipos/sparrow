@@ -2,11 +2,17 @@
 
 RSpec.describe Sparrow::Jobs::Slack do
   let(:message) { instance_double("message") }
-  let(:slack) { described_class.new }
   let(:build) { instance_double("build") }
   let(:faraday) { instance_double("faraday") }
+  let(:slack_user_id) { "slack_user_id" }
 
   it "#run does not raise an error" do
+    slack = described_class.new(
+      "mention" => {
+        "SUCCESS" => slack_user_id
+      }
+    )
+
     expect(message).to receive(:data).and_return("{}")
 
     expect(slack).to receive(:build)
@@ -33,7 +39,7 @@ RSpec.describe Sparrow::Jobs::Slack do
     expect(slack).to receive(:faraday).and_return(faraday)
 
     body = {
-      text: "Build SUCCESS",
+      text: "Build SUCCESS <@#{slack_user_id}>",
       attachments: [{
         color: "good",
         fields: [{
@@ -63,10 +69,13 @@ RSpec.describe Sparrow::Jobs::Slack do
   end
 
   it "#run skips if build is not repo source" do
+    slack = described_class.new
+
     expect(message).to receive(:data).and_return("{}")
     expect(build).to receive(:repo_source?).and_return(false)
     expect(slack).to receive(:build).and_return(build)
     expect(slack).not_to receive(:faraday)
+
     slack.run(message)
   end
 
@@ -78,6 +87,7 @@ RSpec.describe Sparrow::Jobs::Slack do
     expect(build).to receive(:status).and_return("WORKING")
     expect(slack).to receive(:build).at_least(:once).and_return(build)
     expect(slack).not_to receive(:faraday)
+
     slack.run(message)
   end
 end

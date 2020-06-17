@@ -7,8 +7,6 @@ require "sparrow/jobs/base"
 module Sparrow
   module Jobs
     # Notifies builds to slack.
-    #
-    # TODO(shouichi): Provide mention (e.g., @team-a on failure).
     class Slack < Base
       STATUS_QUEUE = "QUEUED"
       STATUS_WORKING = "WORKING"
@@ -61,7 +59,16 @@ module Sparrow
       end
 
       def text
-        "Build #{build.status}"
+        txt = "Build #{build.status}"
+
+        user_id = mention[build.status]
+        return txt unless user_id
+
+        "#{txt} <@#{user_id}>"
+      end
+
+      def mention
+        @args["mention"] || {}
       end
 
       COLORS = {

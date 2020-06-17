@@ -12,6 +12,8 @@ jobs:
       only:
         - SUCCESS
         - FAILURE
+      mention:
+        FAILURE: USER_ID
 
   - class: GitOps
     project_id: whatever
