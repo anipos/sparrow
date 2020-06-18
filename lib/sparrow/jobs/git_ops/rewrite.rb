@@ -29,7 +29,7 @@ module Sparrow
         # rubocop:disable Metrics/MethodLength
         def run
           unless match?
-            logger.info("build does not match, skipping")
+            logger.info("build does not match, skipping", build: @build)
             return
           end
 

@@ -78,4 +78,12 @@ RSpec.describe Sparrow::CloudBuild::Build do
       end
     end
   end
+
+  describe "#to_json " do
+    let(:names) { %w[builds status success.json] }
+
+    it "does not raise error" do
+      expect { build.to_json }.not_to raise_error
+    end
+  end
 end

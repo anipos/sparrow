@@ -22,7 +22,7 @@ module Sparrow
 
       def _run
         unless should_handle?
-          Sparrow.logger.info("build is not repos source nor master, skipping")
+          Sparrow.logger.info("build is not repos source nor master, skipping", build: build)
           return
         end
 

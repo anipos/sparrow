@@ -47,6 +47,10 @@ module Sparrow
         !source["repoSource"].nil?
       end
 
+      def to_json(*args)
+        data.to_json(*args)
+      end
+
       private
 
       def repo_source
