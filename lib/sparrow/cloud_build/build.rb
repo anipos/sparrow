@@ -24,15 +24,15 @@ module Sparrow
       end
 
       def branch
-        repo_source["branchName"]
+        substitutions["BRANCH_NAME"]
       end
 
       def repo_name
-        repo_source["repoName"]
+        resolved_repo_source["repoName"]
       end
 
       def commit_sha
-        data["sourceProvenance"]["resolvedRepoSource"]["commitSha"]
+        resolved_repo_source["commitSha"]
       end
 
       def log_url
@@ -53,12 +53,20 @@ module Sparrow
 
       private
 
-      def repo_source
-        source["repoSource"] || {}
+      def resolved_repo_source
+        source_provenance["resolvedRepoSource"] || {}
+      end
+
+      def source_provenance
+        data["sourceProvenance"] || {}
       end
 
       def source
         data["source"] || {}
+      end
+
+      def substitutions
+        data["substitutions"] || {}
       end
     end
   end
