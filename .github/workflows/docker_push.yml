@@ -1,21 +1,21 @@
 name: Docker
 
 on:
-  - push:
-      branch:
-        - master
-      tags:
-        - *
+  push:
+    branches:
+      - master
+    tags:
+      - "**"
 
 jobs:
   push:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Publish Docker Image to Docker Hub.
-      uses: elgohr/Publish-Docker-Github-Action@master
-      with:
-        name: anipos/sparrow
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_TOKEN }}
-        tag_semver: true
+      - uses: actions/checkout@master
+      - name: Publish Docker Image to Docker Hub.
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: anipos/sparrow
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          tag_semver: true
