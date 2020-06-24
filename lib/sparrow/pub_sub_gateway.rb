@@ -48,9 +48,11 @@ module Sparrow
 
     def listen(worker)
       subscription.listen do |message|
-        Raven.capture do
-          worker.process_message(message)
-          message.acknowledge!
+        Raven.extra_context(message: message.data) do
+          Raven.capture do
+            worker.process_message(message)
+            message.acknowledge!
+          end
         end
       end
     end
