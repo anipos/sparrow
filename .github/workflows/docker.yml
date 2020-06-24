@@ -1,10 +1,17 @@
-name: Publish Docker
+name: Docker
 
 on:
   - push
 
 jobs:
   build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Build Docker Image.
+      run: docker build .
+
+  push:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -15,3 +22,5 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_TOKEN }}
         tag_semver: true
+      # Not to push from forked repositories.
+      if: ${{ github.repository == 'anipos/sparrow' }}
