@@ -4,7 +4,7 @@ RSpec.describe Sparrow::Jobs::Slack do
   let(:message) { instance_double("message") }
   let(:build) { instance_double("build") }
   let(:faraday) { instance_double("faraday") }
-  let(:slack_user_id) { "slack_user_id" }
+  let(:slack_user_id) { "@U024BE7LH" }
 
   it "#run does not raise an error" do
     slack = described_class.new(
@@ -39,7 +39,7 @@ RSpec.describe Sparrow::Jobs::Slack do
     expect(slack).to receive(:faraday).and_return(faraday)
 
     body = {
-      text: "Build SUCCESS <@#{slack_user_id}>",
+      text: "Build SUCCESS <#{slack_user_id}>",
       attachments: [{
         color: "good",
         fields: [{

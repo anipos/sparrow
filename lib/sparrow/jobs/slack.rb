@@ -61,10 +61,14 @@ module Sparrow
       def text
         txt = "Build #{build.status}"
 
-        user_id = mention[build.status]
-        return txt unless user_id
+        user_or_group = mention[build.status]
+        return txt unless user_or_group
 
-        "#{txt} <@#{user_id}>"
+        # To mention user or group, the format must be like
+        #   - user: @U024BE7LH
+        #   - group: !subteam^SAZ94GDB8
+        # See https://api.slack.com/reference/surfaces/formatting
+        "#{txt} <#{user_or_group}>"
       end
 
       def mention
