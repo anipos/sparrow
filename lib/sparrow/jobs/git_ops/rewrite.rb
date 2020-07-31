@@ -33,6 +33,11 @@ module Sparrow
             return
           end
 
+          if identical?
+            logger.info("identical commit, skipping", build: @build)
+            return
+          end
+
           begin
             pr = create_pull_request
             logger.info("created a pull request", pr: pr.to_h)
@@ -66,6 +71,18 @@ module Sparrow
           ("github_" + @source_repo.tr("/", "_")).downcase
         end
 
+        def identical?
+          comparision[:status] == "identical"
+        end
+
+        def comparision
+          @comparision ||= client.compare(
+            @config_repo,
+            master_branch.commit.sha,
+            commit.sha
+          )
+        end
+
         def client
           @client ||= Octokit::Client.new(access_token: ENV["GITHUB_TOKEN"])
         end
@@ -92,7 +109,7 @@ module Sparrow
         end
 
         def commit
-          client.create_commit(
+          @commit ||= client.create_commit(
             @config_repo,
             commit_message,
             tree.sha,
