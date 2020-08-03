@@ -47,7 +47,8 @@ VCR.configure do |config|
   config.hook_into :webmock
 
   config.filter_sensitive_data("<GITHUB_TOKEN>") do |interaction|
-    interaction.request.headers["Authorization"].first
+    headers = interaction.request.headers["Authorization"]
+    headers&.first
   end
 end
 

@@ -33,7 +33,7 @@ module Sparrow
             return
           end
 
-          if identical?
+          if identical_pull_request_exists?
             logger.info("identical commit, skipping", build: @build)
             return
           end
@@ -71,16 +71,20 @@ module Sparrow
           ("github_" + @source_repo.tr("/", "_")).downcase
         end
 
-        def identical?
-          comparision[:status] == "identical"
+        def identical_pull_request_exists?
+          # TODO(shouichi): Pagination.
+          pull_requests.any? do |pull_request|
+            comparision = client.compare(
+              @config_repo,
+              pull_request.head.ref,
+              commit.sha
+            )
+            comparision[:status] == "identical"
+          end
         end
 
-        def comparision
-          @comparision ||= client.compare(
-            @config_repo,
-            master_branch.commit.sha,
-            commit.sha
-          )
+        def pull_requests
+          @pull_requests ||= client.pull_requests(@config_repo)
         end
 
         def client

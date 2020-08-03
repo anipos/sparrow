@@ -672,4 +672,74 @@ http_interactions:
         lints (#25)\n\nhttps://github.com/anipos/sparrow/commit/238947c2440028cfff5388c7fba3aa4ca7ae92f5","tree":{"sha":"cb0ab623ade50a10d1f66b443cca6e02cc65ea12","url":"https://api.github.com/repos/anipos/sparrow/git/trees/cb0ab623ade50a10d1f66b443cca6e02cc65ea12"},"url":"https://api.github.com/repos/anipos/sparrow/git/commits/21c4653ccbef09d36f2870d51d8e94aa1d6e2c56","comment_count":0,"verification":{"verified":false,"reason":"unsigned","signature":null,"payload":null}},"url":"https://api.github.com/repos/anipos/sparrow/commits/21c4653ccbef09d36f2870d51d8e94aa1d6e2c56","html_url":"https://github.com/anipos/sparrow/commit/21c4653ccbef09d36f2870d51d8e94aa1d6e2c56","comments_url":"https://api.github.com/repos/anipos/sparrow/commits/21c4653ccbef09d36f2870d51d8e94aa1d6e2c56/comments","author":{"login":"shouichi","id":99586,"node_id":"MDQ6VXNlcjk5NTg2","avatar_url":"https://avatars0.githubusercontent.com/u/99586?v=4","gravatar_id":"","url":"https://api.github.com/users/shouichi","html_url":"https://github.com/shouichi","followers_url":"https://api.github.com/users/shouichi/followers","following_url":"https://api.github.com/users/shouichi/following{/other_user}","gists_url":"https://api.github.com/users/shouichi/gists{/gist_id}","starred_url":"https://api.github.com/users/shouichi/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/shouichi/subscriptions","organizations_url":"https://api.github.com/users/shouichi/orgs","repos_url":"https://api.github.com/users/shouichi/repos","events_url":"https://api.github.com/users/shouichi/events{/privacy}","received_events_url":"https://api.github.com/users/shouichi/received_events","type":"User","site_admin":false},"committer":{"login":"shouichi","id":99586,"node_id":"MDQ6VXNlcjk5NTg2","avatar_url":"https://avatars0.githubusercontent.com/u/99586?v=4","gravatar_id":"","url":"https://api.github.com/users/shouichi","html_url":"https://github.com/shouichi","followers_url":"https://api.github.com/users/shouichi/followers","following_url":"https://api.github.com/users/shouichi/following{/other_user}","gists_url":"https://api.github.com/users/shouichi/gists{/gist_id}","starred_url":"https://api.github.com/users/shouichi/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/shouichi/subscriptions","organizations_url":"https://api.github.com/users/shouichi/orgs","repos_url":"https://api.github.com/users/shouichi/repos","events_url":"https://api.github.com/users/shouichi/events{/privacy}","received_events_url":"https://api.github.com/users/shouichi/received_events","type":"User","site_admin":false},"parents":[{"sha":"e576c84240351242a549e7e88079d854b464218a","url":"https://api.github.com/repos/anipos/sparrow/commits/e576c84240351242a549e7e88079d854b464218a","html_url":"https://github.com/anipos/sparrow/commit/e576c84240351242a549e7e88079d854b464218a"}]}],"files":[{"sha":"b9d5b68a28a6f0bdac6c2479c47781d9eb209d59","filename":"spec/fixtures/git_ops/rewritten","status":"added","additions":1,"deletions":0,"changes":1,"blob_url":"https://github.com/anipos/sparrow/blob/21c4653ccbef09d36f2870d51d8e94aa1d6e2c56/spec/fixtures/git_ops/rewritten","raw_url":"https://github.com/anipos/sparrow/raw/21c4653ccbef09d36f2870d51d8e94aa1d6e2c56/spec/fixtures/git_ops/rewritten","contents_url":"https://api.github.com/repos/anipos/sparrow/contents/spec/fixtures/git_ops/rewritten?ref=21c4653ccbef09d36f2870d51d8e94aa1d6e2c56","patch":"@@
         -0,0 +1 @@\n+238947c2440028cfff5388c7fba3aa4ca7ae92f5"}]}'
   recorded_at: Fri, 31 Jul 2020 02:31:37 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/anipos/sparrow/pulls
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 4.18.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 03 Aug 2020 08:26:51 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '2'
+      Server:
+      - GitHub.com
+      Status:
+      - 200 OK
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Accept-Encoding, Accept, X-Requested-With, Accept-Encoding
+      Etag:
+      - '"aacc6f617e4d9cd3fbca87b8d3748d98"'
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval,
+        X-GitHub-Media-Type, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '56'
+      X-Ratelimit-Reset:
+      - '1596446775'
+      Accept-Ranges:
+      - bytes
+      X-Github-Request-Id:
+      - D4D6:1D42:187823:215ACE:5F27CA4B
+    body:
+      encoding: UTF-8
+      string: "[]"
+  recorded_at: Mon, 03 Aug 2020 08:26:51 GMT
 recorded_with: VCR 6.0.0
