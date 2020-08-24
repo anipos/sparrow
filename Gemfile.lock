@@ -13,11 +13,9 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.1)
-    codecov (0.2.7)
-      colorize
+    codecov (0.2.8)
       json
       simplecov
-    colorize (0.8.1)
     concurrent-ruby (1.1.6)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
