@@ -137,7 +137,11 @@ module Sparrow
         end
 
         def branch_name
-          "heads/gitops-#{@build.commit_sha}-#{@name}"
+          "heads/gitops-#{@build.commit_sha}-#{sanitized_name}"
+        end
+
+        def sanitized_name
+          @name.tr("/", "-")
         end
 
         def title
