@@ -68,7 +68,7 @@ module Sparrow
         def cloud_source_repo
           # Cloud Source Repositories downcases org/repo names (e.g., Foo/Bar
           # -> foo_bar).
-          ("github_" + @source_repo.tr("/", "_")).downcase
+          "github_#{@source_repo.tr('/', '_')}".downcase
         end
 
         def identical_pull_request_exists?

@@ -11,14 +11,14 @@ require "sparrow/version"
 require "sparrow/worker"
 
 # Not to buffer logs.
-STDOUT.sync = true
+$stdout.sync = true
 
 # @private
 module Sparrow
   class Error < StandardError; end
 
   def self.logger
-    @logger ||= Ougai::Logger.new(STDOUT).tap do |logger|
+    @logger ||= Ougai::Logger.new($stdout).tap do |logger|
       logger.formatter = Sparrow::StackdriverFormatter.new
     end
   end
