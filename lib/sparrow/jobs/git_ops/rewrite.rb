@@ -97,9 +97,12 @@ module Sparrow
         end
 
         def blob
-          client.create_blob(@config_repo, rendered_template)
+          client.create_blob(@config_repo, rendered_template).tap do |blob|
+            logger.debug("created blob", blob: blob)
+          end
         end
 
+        # rubocop:disable Metrics/MethodLength
         def tree
           client.create_tree(
             @config_repo,
@@ -110,8 +113,11 @@ module Sparrow
               sha: blob
             }],
             base_tree: master_branch.commit.sha
-          )
+          ).tap do |tree|
+            logger.debug("created tree", tree: tree.to_h)
+          end
         end
+        # rubocop:enable Metrics/MethodLength
 
         def commit
           @commit ||= client.create_commit(
@@ -119,11 +125,15 @@ module Sparrow
             commit_message,
             tree.sha,
             master_branch.commit.sha
-          )
+          ).tap do |commit|
+            logger.debug("created commit", commit: commit.to_h)
+          end
         end
 
         def ref
-          @ref ||= client.create_ref(@config_repo, branch_name, commit.sha)
+          @ref ||= client.create_ref(@config_repo, branch_name, commit.sha).tap do |ref|
+            logger.debug("created ref", ref: ref.to_h)
+          end
         end
 
         def create_pull_request
