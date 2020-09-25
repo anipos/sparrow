@@ -109,10 +109,10 @@ https://hub.docker.com/r/anipos/sparrow.
 
 Sparrow requires
 
-- SPARROW_CONFIG: The path to the sparrow.yml.
-- SPARROW_SLACK_WEBHOOK: Slack webhook URL.
-- GOOGLE_APPLICATION_CREDENTIALS: Google Cloud IAM key.
-- GITHUB_TOKEN: GitHub personal access token with "repo" scope.
+- `SPARROW_CONFIG`: The path to the sparrow.yml.
+- `SPARROW_SLACK_WEBHOOK`: Slack webhook URL.
+- `GOOGLE_APPLICATION_CREDENTIALS`: Google Cloud IAM key.
+- `GITHUB_TOKEN`: GitHub personal access token with "repo" scope.
 
 The IAM key must have
 
