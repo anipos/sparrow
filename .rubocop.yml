@@ -29,6 +29,9 @@ RSpec/MessageSpies:
 RSpec/MultipleExpectations:
   Enabled: false
 
+RSpec/StubbedMock:
+  Enabled: false
+
 Style/HashEachMethods:
   Enabled: true
 
