@@ -21,7 +21,7 @@ module Sparrow
     # this call to exit, call `wait!`.
     def subscribe(worker)
       subscriber = listen(worker)
-      subscriber.on_error(&method(:on_error))
+      subscriber.on_error { |e| on_error(e) }
       subscriber.start
     end
 
