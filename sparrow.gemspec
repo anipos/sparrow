@@ -45,7 +45,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "google-cloud-pubsub", ">= 1.6", "< 3.0"
   spec.add_dependency "octokit", "~> 4.15"
-  spec.add_dependency "ougai", "~> 1.8"
+  spec.add_dependency "ougai", ">= 1.8", "< 3.0"
   spec.add_dependency "sentry-raven", "~> 3.0"
 
   spec.add_development_dependency "bundler", "~> 1.17"
