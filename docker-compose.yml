@@ -31,7 +31,7 @@ services:
       - install
 
   pubsub:
-    image: google/cloud-sdk:356.0.0
+    image: google/cloud-sdk:357.0.0
     command:
       - gcloud
       - beta
