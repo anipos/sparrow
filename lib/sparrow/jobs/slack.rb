@@ -50,39 +50,48 @@ module Sparrow
           "type": "header",
           "text": {
             "type": "plain_text",
-            "text": title
+            "text": "Build #{build.status}"
           }
         }
       end
 
-      def title
-        txt = "Build #{build.status}"
+      def main
+        fields = main_fields_info
+        mention = main_fields_mention
+        fields << mention if mention
 
-        user_or_group = mention[build.status]
-        return txt unless user_or_group
+        {
+          "type": "section",
+          "fields": fields
+        }
+      end
 
+      def main_fields_info
+        [{
+          "type": "mrkdwn",
+          "text": "*Repository:*\n#{github_repo}"
+        }, {
+          "type": "mrkdwn",
+          "text": "*Tags:*\n#{build.tags.join(', ')}"
+        }]
+      end
+
+      def main_fields_mention
         # To mention user or group, the format must be like
         #   - user: @U024BE7LH
         #   - group: !subteam^SAZ94GDB8
         # See https://api.slack.com/reference/surfaces/formatting
-        "#{txt} <#{user_or_group}>"
-      end
+        user_or_group = mention_on_status[build.status]
+        return unless user_or_group
 
-      def mention
-        @args["mention"] || {}
-      end
-
-      def main
         {
-          "type": "section",
-          "fields": [{
-            "type": "mrkdwn",
-            "text": "*Repository:*\n#{github_repo}"
-          }, {
-            "type": "mrkdwn",
-            "text": "*Tags:*\n#{build.tags.join(', ')}"
-          }]
+          "type": "mrkdwn",
+          "text": "<#{user_or_group}>"
         }
+      end
+
+      def mention_on_status
+        @args["mention"] || {}
       end
 
       def actions
@@ -110,12 +119,8 @@ module Sparrow
             "type": "plain_text",
             "text": "View commit"
           },
-          "url": commit_url
+          "url": "https://github.com/#{github_repo}/commit/#{build.commit_sha}"
         }
-      end
-
-      def commit_url
-        "https://github.com/#{github_repo}/commit/#{build.commit_sha}"
       end
 
       # TODO(shouichi): Handle other git providers (e.g., bitbucket).

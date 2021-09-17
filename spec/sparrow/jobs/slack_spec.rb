@@ -44,7 +44,7 @@ RSpec.describe Sparrow::Jobs::Slack do
           "type": "header",
           "text": {
             "type": "plain_text",
-            "text": "Build SUCCESS <#{slack_user_id}>"
+            "text": "Build SUCCESS"
           }
         },
         {
@@ -57,6 +57,10 @@ RSpec.describe Sparrow::Jobs::Slack do
             {
               "type": "mrkdwn",
               "text": "*Tags:*\ntag1, tag2"
+            },
+            {
+              "type": "mrkdwn",
+              "text": "<#{slack_user_id}>"
             },
           ]
         },
