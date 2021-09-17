@@ -30,12 +30,12 @@ module Sparrow
         # rubocop:disable Metrics/MethodLength
         def run
           unless match?
-            logger.info("build does not match, skipping", build: @build)
+            logger.info("build does not match, skipping")
             return
           end
 
           if no_changes?
-            logger.info("no changes, skipping", build: @build)
+            logger.info("no changes, skipping")
             return
           end
 
@@ -53,7 +53,7 @@ module Sparrow
         private
 
         def logger
-          @logger ||= Sparrow.logger.child(name: @name)
+          @logger ||= Sparrow.logger.child(name: @name, build: @build)
         end
 
         # TODO(shouichi): Currently master branch only. Make it configurable.
