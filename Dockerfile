@@ -26,4 +26,8 @@ ENV SPARROW_VERSION 0.1.0
 COPY --from=builder /app/pkg/sparrow-$SPARROW_VERSION.gem .
 RUN gem install sparrow-$SPARROW_VERSION.gem
 
+# To tell sentry the sparrow version.
+# https://docs.sentry.io/platforms/ruby/configuration/options/
+RUN echo $SPARROW_VERSION > REVISION
+
 ENTRYPOINT ["sparrow"]
