@@ -39,28 +39,49 @@ RSpec.describe Sparrow::Jobs::Slack do
     expect(slack).to receive(:faraday).and_return(faraday)
 
     body = {
-      text: "Build SUCCESS <#{slack_user_id}>",
-      attachments: [{
-        color: "good",
-        fields: [{
-          title: "Repository",
-          value: "anipos/sparrow",
-          short: true
-        }, {
-          title: "Tags",
-          value: "tag1, tag2",
-          short: true
-        }],
-        actions: [{
-          "type": "button",
-          "text": "View Build",
-          "url": log_url
-        }, {
-          "type": "button",
-          "text": "View Commit",
-          "url": "https://github.com/anipos/sparrow/commit/#{commit_sha}"
-        }]
-      }]
+      "blocks": [
+        {
+          "type": "header",
+          "text": {
+            "type": "plain_text",
+            "text": "Build SUCCESS <#{slack_user_id}>"
+          }
+        },
+        {
+          "type": "section",
+          "fields": [
+            {
+              "type": "mrkdwn",
+              "text": "*Repository:*\nanipos/sparrow"
+            },
+            {
+              "type": "mrkdwn",
+              "text": "*Tags:*\ntag1, tag2"
+            },
+          ]
+        },
+        {
+          "type": "actions",
+          "elements": [
+            {
+              "type": "button",
+              "text": {
+                "type": "plain_text",
+                "text": "View build"
+              },
+              "url": log_url
+            },
+            {
+              "type": "button",
+              "text": {
+                "type": "plain_text",
+                "text": "View commit"
+              },
+              "url": "https://github.com/anipos/sparrow/commit/#{commit_sha}"
+            },
+          ]
+        },
+      ]
     }.to_json
     headers = { "Content-Type": "application/json" }
     expect(faraday).to receive(:post).with(slack_webhook, body, headers)

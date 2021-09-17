@@ -7,5 +7,79 @@ require "sparrow"
 project_id = "whatever"
 client = Sparrow::PubSubGateway::Client.new(project_id)
 topic = client.topic("cloud-builds")
-# TODO(shouichi): Fix to publish cloud build event structured JSON.
-topic.publish("{}")
+
+body = {
+  "id": "cff9dffa-30db-4610-94df-691ba1e5a5a0",
+  "status": "SUCCESS",
+  "source": {
+    "repoSource": {
+      "projectId": "gcp-project-id",
+      "repoName": "github_org_repo",
+      "commitSha": "d6a9b4b32c64deb21b691a2a13c17dc347bec35e"
+    }
+  },
+  "createTime": "2021-09-17T01:45:55.032672891Z",
+  "startTime": "2021-09-17T01:45:55.869390545Z",
+  "finishTime": "2021-09-17T01:48:42.400734Z",
+  "results": {
+    "buildStepImages": [""],
+    "buildStepOutputs": [""]
+  },
+  "steps": [{
+    "name": "gcr.io/kaniko-project/executor:v1.6.0",
+    "args": [
+      "--dockerfile=Dockerfile",
+      "--destination=gcr.io/gcp-project-id/app:d6a9b4b32c64deb21b691a2a13c17dc347bec35e",
+      "--build-arg=COMMIT_SHA=d6a9b4b32c64deb21b691a2a13c17dc347bec35e",
+      "--cache=true",
+      "--cache-ttl=336h",
+    ],
+    "timing": {
+      "startTime": "2021-09-17T01:46:04.840239892Z",
+      "endTime": "2021-09-17T01:48:41.705525546Z"
+    },
+    "status": "SUCCESS",
+    "pullTiming": {
+      "startTime": "2021-09-17T01:46:04.840239892Z",
+      "endTime": "2021-09-17T01:46:08.953306565Z"
+    }
+  }],
+  "timeout": "600s",
+  "projectId": "gcp-project-id",
+  "logsBucket": "gs://1234567.cloudbuild-logs.googleusercontent.com",
+  "sourceProvenance": {
+    "resolvedRepoSource": {
+      "projectId": "gcp-project-id",
+      "repoName": "github_org_repo",
+      "commitSha": "d6a9b4b32c64deb21b691a2a13c17dc347bec35e"
+    }
+  },
+  "buildTriggerId": "f420008f-0c36-424b-bef5-b3c42972cf99",
+  "options": { "substitutionOption": "ALLOW_LOOSE", "logging": "LEGACY", "dynamicSubstitutions": true },
+  "logUrl": "https://console.cloud.google.com/cloud-build/builds/cff9dffa-30db-4610-94df-691ba1e5a5a0?project=1234567",
+  "substitutions": {
+    "REPO_NAME": "github_org_repo",
+    "REVISION_ID": "d6a9b4b32c64deb21b691a2a13c17dc347bec35e",
+    "COMMIT_SHA": "d6a9b4b32c64deb21b691a2a13c17dc347bec35e",
+    "SHORT_SHA": "d6a9b4b",
+    "BRANCH_NAME": "master",
+    "REF_NAME": "master",
+    "TRIGGER_NAME": "Trigger Name",
+    "TRIGGER_BUILD_CONFIG_PATH": "cloudbuild.yaml"
+  },
+  "tags": %w[tag1 tag2 trigger-f420008f-0c36-424b-bef5-b3c42972cf99],
+  "timing": {
+    "FETCHSOURCE": {
+      "startTime": "2021-09-17T01:45:56.280401628Z",
+      "endTime": "2021-09-17T01:46:04.187066830Z"
+    },
+    "BUILD": {
+      "startTime": "2021-09-17T01:46:04.187172107Z",
+      "endTime": "2021-09-17T01:48:41.706481584Z"
+    }
+  },
+  "queueTtl": "3600s",
+  "name": "projects/1234567/locations/global/builds/cff9dffa-30db-4610-94df-691ba1e5a5a0"
+}
+
+topic.publish(body.to_json)

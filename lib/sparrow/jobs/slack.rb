@@ -8,11 +8,6 @@ module Sparrow
   module Jobs
     # Notifies builds to slack.
     class Slack < Base
-      STATUS_QUEUE = "QUEUED"
-      STATUS_WORKING = "WORKING"
-      STATUS_SUCCESS = "SUCCESS"
-      STATUS_FAILURE = "FAILURE"
-
       private
 
       def _run
@@ -21,7 +16,7 @@ module Sparrow
           return
         end
 
-        faraday.post(url, body, headers)
+        faraday.post(url, body, HEADERS)
         Sparrow.logger.info("sent to slack")
       end
 
@@ -34,8 +29,7 @@ module Sparrow
       end
 
       def target_statuses
-        @args["only"] ||
-          [STATUS_QUEUE, STATUS_WORKING, STATUS_SUCCESS, STATUS_FAILURE]
+        @args["only"] || %w[QUEUED WORKING SUCCESS FAILURE]
       end
 
       def url
@@ -43,22 +37,25 @@ module Sparrow
       end
 
       def body
-        # https://api.slack.com/docs/messages/builder
+        # https://api.slack.com/block-kit/building
+        { blocks: blocks }.to_json
+      end
+
+      def blocks
+        [heading, main, actions]
+      end
+
+      def heading
         {
-          text: text,
-          attachments: attachments
-        }.to_json
+          "type": "header",
+          "text": {
+            "type": "plain_text",
+            "text": title
+          }
+        }
       end
 
-      def attachments
-        [{
-          color: color,
-          fields: fields,
-          actions: actions
-        }]
-      end
-
-      def text
+      def title
         txt = "Build #{build.status}"
 
         user_or_group = mention[build.status]
@@ -75,37 +72,33 @@ module Sparrow
         @args["mention"] || {}
       end
 
-      COLORS = {
-        STATUS_QUEUE => "good",
-        STATUS_WORKING => "good",
-        STATUS_SUCCESS => "good",
-        STATUS_FAILURE => "danger"
-      }.freeze
-
-      def color
-        COLORS[build.status]
-      end
-
-      def fields
-        [{
-          title: "Repository",
-          value: github_repo,
-          short: true
-        }, {
-          title: "Tags",
-          value: build.tags.join(", "),
-          short: true
-        }]
+      def main
+        {
+          "type": "section",
+          "fields": [{
+            "type": "mrkdwn",
+            "text": "*Repository:*\n#{github_repo}"
+          }, {
+            "type": "mrkdwn",
+            "text": "*Tags:*\n#{build.tags.join(', ')}"
+          }]
+        }
       end
 
       def actions
-        [view_build_button, view_commit_button]
+        {
+          "type": "actions",
+          "elements": [view_build_button, view_commit_button]
+        }
       end
 
       def view_build_button
         {
           "type": "button",
-          "text": "View Build",
+          "text": {
+            "type": "plain_text",
+            "text": "View build"
+          },
           "url": build.log_url
         }
       end
@@ -113,7 +106,10 @@ module Sparrow
       def view_commit_button
         {
           "type": "button",
-          "text": "View Commit",
+          "text": {
+            "type": "plain_text",
+            "text": "View commit"
+          },
           "url": commit_url
         }
       end
@@ -127,14 +123,12 @@ module Sparrow
         build.repo_name.delete_prefix("github_").tr("_", "/")
       end
 
-      def headers
-        { "Content-Type": "application/json" }
-      end
-
       # Visible for testing.
       def faraday
         Faraday
       end
+
+      HEADERS = { "Content-Type": "application/json" }.freeze
     end
   end
 end
