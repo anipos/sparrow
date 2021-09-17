@@ -5,7 +5,7 @@ PATH
       google-cloud-pubsub (>= 1.6, < 3.0)
       octokit (~> 4.15)
       ougai (>= 1.8, < 3.0)
-      sentry-raven (~> 3.0)
+      sentry-ruby (~> 4.0)
 
 GEM
   remote: https://rubygems.org/
@@ -124,8 +124,13 @@ GEM
     sawyer (0.8.2)
       addressable (>= 2.3.5)
       faraday (> 0.8, < 2.0)
-    sentry-raven (3.1.2)
+    sentry-ruby (4.7.2)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
       faraday (>= 1.0)
+      sentry-ruby-core (= 4.7.2)
+    sentry-ruby-core (4.7.2)
+      concurrent-ruby
+      faraday
     signet (0.15.0)
       addressable (~> 2.3)
       faraday (>= 0.17.3, < 2.0)
@@ -149,7 +154,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.17)
+  bundler (~> 2.0)
   codecov (~> 0.5.0)
   rake (~> 13.0)
   rspec (~> 3.0)
@@ -164,4 +169,4 @@ DEPENDENCIES
   yard (~> 0.9)
 
 BUNDLED WITH
-   2.1.4
+   2.2.15
