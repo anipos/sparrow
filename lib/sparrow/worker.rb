@@ -12,7 +12,7 @@ module Sparrow
     # Starts receiving messages from the gateway. It does not block; caller is
     # responsible for calling `wait!` to block.
     def start
-      Sparrow.logger.info("worker started")
+      Sparrow.logger.info("worker started", job: { class: @job_class, args: @job_args })
       @gateway.subscribe(self)
     end
 
