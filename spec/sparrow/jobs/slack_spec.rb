@@ -73,7 +73,8 @@ RSpec.describe Sparrow::Jobs::Slack do
                 "type": "plain_text",
                 "text": "View build"
               },
-              "url": log_url
+              "url": log_url,
+              "style": "primary"
             },
             {
               "type": "button",
@@ -81,7 +82,8 @@ RSpec.describe Sparrow::Jobs::Slack do
                 "type": "plain_text",
                 "text": "View commit"
               },
-              "url": "https://github.com/anipos/sparrow/commit/#{commit_sha}"
+              "url": "https://github.com/anipos/sparrow/commit/#{commit_sha}",
+              "style": "primary"
             },
           ]
         },

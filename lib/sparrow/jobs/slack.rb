@@ -7,7 +7,7 @@ require "sparrow/jobs/base"
 module Sparrow
   module Jobs
     # Notifies builds to slack.
-    class Slack < Base
+    class Slack < Base # rubocop:disable Metrics/ClassLength
       private
 
       def _run
@@ -108,8 +108,9 @@ module Sparrow
             "type": "plain_text",
             "text": "View build"
           },
-          "url": build.log_url
-        }
+          "url": build.log_url,
+          "style": style
+        }.compact
       end
 
       def view_commit_button
@@ -119,8 +120,16 @@ module Sparrow
             "type": "plain_text",
             "text": "View commit"
           },
-          "url": "https://github.com/#{github_repo}/commit/#{build.commit_sha}"
-        }
+          "url": "https://github.com/#{github_repo}/commit/#{build.commit_sha}",
+          "style": style
+        }.compact
+      end
+
+      def style
+        {
+          "SUCCESS" => "primary",
+          "FAILURE" => "danger"
+        }[build.status]
       end
 
       # TODO(shouichi): Handle other git providers (e.g., bitbucket).
