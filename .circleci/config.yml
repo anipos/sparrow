@@ -19,7 +19,7 @@ commands:
 jobs:
   build:
     docker:
-      - image: cimg/ruby:3.0.2
+      - image: cimg/ruby:3.0.3
         environment:
           - GEM_PATH: /home/circleci/project/vendor/bundle/ruby/3.0.0
           - PUBSUB_EMULATOR_HOST: localhost:8085
