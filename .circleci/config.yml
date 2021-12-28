@@ -6,13 +6,13 @@ commands:
     steps:
       - restore_cache:
           keys:
-            - bundler-v1567765223-{{ checksum "Gemfile.lock" }}
-            - bundler-v1567765223-
+            - bundler-v1567765224-{{ checksum "Gemfile.lock" }}
+            - bundler-v1567765224-
       - run:
           name: Bundle Install
           command: bundle check --path vendor/bundle || bundle install --deployment
       - save_cache:
-          key: bundler-v1567765223-{{ checksum "Gemfile.lock" }}
+          key: bundler-v1567765224-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
@@ -21,7 +21,7 @@ jobs:
     docker:
       - image: cimg/ruby:3.1.0
         environment:
-          - GEM_PATH: /home/circleci/project/vendor/bundle/ruby/3.0.0
+          - GEM_PATH: /home/circleci/project/vendor/bundle/ruby/3.1.0
           - PUBSUB_EMULATOR_HOST: localhost:8085
       - image: google/cloud-sdk:367.0.0
         command:
