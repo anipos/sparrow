@@ -5,7 +5,7 @@ PATH
       google-cloud-pubsub (>= 1.6, < 3.0)
       octokit (~> 4.15)
       ougai (>= 1.8, < 3.0)
-      sentry-ruby (~> 4.0)
+      sentry-ruby (>= 4, < 6)
 
 GEM
   remote: https://rubygems.org/
@@ -142,13 +142,11 @@ GEM
     sawyer (0.8.2)
       addressable (>= 2.3.5)
       faraday (> 0.8, < 2.0)
-    sentry-ruby (4.9.2)
+    sentry-ruby (5.0.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-      faraday (~> 1.0)
-      sentry-ruby-core (= 4.9.2)
-    sentry-ruby-core (4.9.2)
+      sentry-ruby-core (= 5.0.0)
+    sentry-ruby-core (5.0.0)
       concurrent-ruby
-      faraday
     signet (0.16.0)
       addressable (~> 2.8)
       faraday (>= 0.17.3, < 2.0)
