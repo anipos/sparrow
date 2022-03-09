@@ -142,10 +142,10 @@ GEM
     sawyer (0.8.2)
       addressable (>= 2.3.5)
       faraday (> 0.8, < 2.0)
-    sentry-ruby (5.1.1)
+    sentry-ruby (5.2.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-      sentry-ruby-core (= 5.1.1)
-    sentry-ruby-core (5.1.1)
+      sentry-ruby-core (= 5.2.0)
+    sentry-ruby-core (5.2.0)
       concurrent-ruby
     signet (0.16.0)
       addressable (~> 2.8)
