@@ -1,20 +1,7 @@
 version: 2.1
 
-commands:
-  bundle_install:
-    description: bundle install & cache
-    steps:
-      - restore_cache:
-          keys:
-            - bundler-v1567765223-{{ checksum "Gemfile.lock" }}
-            - bundler-v1567765223-
-      - run:
-          name: Bundle Install
-          command: bundle check --path vendor/bundle || bundle install --deployment
-      - save_cache:
-          key: bundler-v1567765223-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
+orbs:
+  ruby: circleci/ruby@1.7.1
 
 jobs:
   build:
@@ -33,7 +20,7 @@ jobs:
           - --host-port=0.0.0.0:8085
     steps:
       - checkout
-      - bundle_install
+      - ruby/install-deps
       - run:
           name: Rubocop
           command: bundle exec rubocop
