@@ -10,7 +10,7 @@ jobs:
         environment:
           - GEM_PATH: /home/circleci/project/vendor/bundle/ruby/3.0.0
           - PUBSUB_EMULATOR_HOST: localhost:8085
-      - image: google/cloud-sdk:382.0.0
+      - image: google/cloud-sdk:383.0.1
         command:
           - gcloud
           - beta
