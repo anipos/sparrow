@@ -33,7 +33,7 @@ module Sparrow
       end
 
       def url
-        ENV["SPARROW_SLACK_WEBHOOK"]
+        ENV.fetch("SPARROW_SLACK_WEBHOOK", nil)
       end
 
       def body
@@ -47,10 +47,10 @@ module Sparrow
 
       def heading
         {
-          "type": "header",
-          "text": {
-            "type": "plain_text",
-            "text": "Build #{build.status}"
+          type: "header",
+          text: {
+            type: "plain_text",
+            text: "Build #{build.status}"
           }
         }
       end
@@ -61,18 +61,18 @@ module Sparrow
         fields << mention if mention
 
         {
-          "type": "section",
-          "fields": fields
+          type: "section",
+          fields: fields
         }
       end
 
       def main_fields_info
         [{
-          "type": "mrkdwn",
-          "text": "*Repository:*\n#{github_repo}"
+          type: "mrkdwn",
+          text: "*Repository:*\n#{github_repo}"
         }, {
-          "type": "mrkdwn",
-          "text": "*Tags:*\n#{build.tags.join(', ')}"
+          type: "mrkdwn",
+          text: "*Tags:*\n#{build.tags.join(', ')}"
         }]
       end
 
@@ -85,8 +85,8 @@ module Sparrow
         return unless user_or_group
 
         {
-          "type": "mrkdwn",
-          "text": "<#{user_or_group}>"
+          type: "mrkdwn",
+          text: "<#{user_or_group}>"
         }
       end
 
@@ -96,32 +96,32 @@ module Sparrow
 
       def actions
         {
-          "type": "actions",
-          "elements": [view_build_button, view_commit_button]
+          type: "actions",
+          elements: [view_build_button, view_commit_button]
         }
       end
 
       def view_build_button
         {
-          "type": "button",
-          "text": {
-            "type": "plain_text",
-            "text": "View build"
+          type: "button",
+          text: {
+            type: "plain_text",
+            text: "View build"
           },
-          "url": build.log_url,
-          "style": style
+          url: build.log_url,
+          style: style
         }.compact
       end
 
       def view_commit_button
         {
-          "type": "button",
-          "text": {
-            "type": "plain_text",
-            "text": "View commit"
+          type: "button",
+          text: {
+            type: "plain_text",
+            text: "View commit"
           },
-          "url": "https://github.com/#{github_repo}/commit/#{build.commit_sha}",
-          "style": style
+          url: "https://github.com/#{github_repo}/commit/#{build.commit_sha}",
+          style: style
         }.compact
       end
 

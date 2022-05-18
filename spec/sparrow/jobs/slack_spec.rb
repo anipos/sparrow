@@ -34,56 +34,56 @@ RSpec.describe Sparrow::Jobs::Slack do
 
     slack_webhook = "http://slack.com/..."
     expect(ENV)
-      .to receive(:[]).with("SPARROW_SLACK_WEBHOOK").and_return(slack_webhook)
+      .to receive(:fetch).with("SPARROW_SLACK_WEBHOOK", nil).and_return(slack_webhook)
 
     expect(slack).to receive(:faraday).and_return(faraday)
 
     body = {
-      "blocks": [
+      blocks: [
         {
-          "type": "header",
-          "text": {
-            "type": "plain_text",
-            "text": "Build SUCCESS"
+          type: "header",
+          text: {
+            type: "plain_text",
+            text: "Build SUCCESS"
           }
         },
         {
-          "type": "section",
-          "fields": [
+          type: "section",
+          fields: [
             {
-              "type": "mrkdwn",
-              "text": "*Repository:*\nanipos/sparrow"
+              type: "mrkdwn",
+              text: "*Repository:*\nanipos/sparrow"
             },
             {
-              "type": "mrkdwn",
-              "text": "*Tags:*\ntag1, tag2"
+              type: "mrkdwn",
+              text: "*Tags:*\ntag1, tag2"
             },
             {
-              "type": "mrkdwn",
-              "text": "<#{slack_user_id}>"
+              type: "mrkdwn",
+              text: "<#{slack_user_id}>"
             },
           ]
         },
         {
-          "type": "actions",
-          "elements": [
+          type: "actions",
+          elements: [
             {
-              "type": "button",
-              "text": {
-                "type": "plain_text",
-                "text": "View build"
+              type: "button",
+              text: {
+                type: "plain_text",
+                text: "View build"
               },
-              "url": log_url,
-              "style": "primary"
+              url: log_url,
+              style: "primary"
             },
             {
-              "type": "button",
-              "text": {
-                "type": "plain_text",
-                "text": "View commit"
+              type: "button",
+              text: {
+                type: "plain_text",
+                text: "View commit"
               },
-              "url": "https://github.com/anipos/sparrow/commit/#{commit_sha}",
-              "style": "primary"
+              url: "https://github.com/anipos/sparrow/commit/#{commit_sha}",
+              style: "primary"
             },
           ]
         },

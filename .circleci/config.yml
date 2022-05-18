@@ -6,9 +6,8 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/ruby:3.0.3
+      - image: cimg/ruby:3.1.1
         environment:
-          - GEM_PATH: /home/circleci/project/vendor/bundle/ruby/3.0.0
           - PUBSUB_EMULATOR_HOST: localhost:8085
       - image: google/cloud-sdk:386.0.0
         command:
@@ -22,19 +21,14 @@ jobs:
       - checkout
       - ruby/install-deps
       - run:
-          name: Rubocop
           command: bundle exec rubocop
       - run:
-          name: RSpec
-          # `bundle exec rspec` loads sparrow gem before simplecov starts that
-          # prevents simplecov from gathering code coverage.
-          command: rake spec
+          command: bundle exec rake spec
       - store_artifacts:
           path: coverage
       - store_test_results:
           path: rspec
       - run:
-          name: Yardoc
           command: bundle exec yardoc 'lib/**/*.rb'
       - store_artifacts:
           path: doc

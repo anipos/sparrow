@@ -50,7 +50,7 @@ RSpec.describe Sparrow::CloudBuild::Build do
       end
 
       it "#repo_source? returns master" do
-        expect(build.repo_source?).to eq(true)
+        expect(build.repo_source?).to be(true)
       end
     end
   end
@@ -74,12 +74,12 @@ RSpec.describe Sparrow::CloudBuild::Build do
       let(:names) { %w[builds source storage.json] }
 
       it "#repo_source? returns master" do
-        expect(build.repo_source?).to eq(false)
+        expect(build.repo_source?).to be(false)
       end
     end
   end
 
-  describe "#to_json " do
+  describe "#to_json" do
     let(:names) { %w[builds status success.json] }
 
     it "does not raise error" do
