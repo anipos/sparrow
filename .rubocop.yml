@@ -11,6 +11,10 @@ Metrics/BlockLength:
     - sparrow.gemspec
     - spec/**/*.rb
 
+# TODO(shouichi): Temporary workaround. Enable it again.
+Layout/BlockAlignment:
+  Enabled: false
+
 Layout/FirstArrayElementIndentation:
   EnforcedStyle: consistent
 
