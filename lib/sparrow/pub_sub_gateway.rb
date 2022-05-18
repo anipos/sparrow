@@ -102,7 +102,7 @@ module Sparrow
       end
 
       def env_present?(key)
-        !(ENV[key] || "").empty?
+        !ENV.fetch(key, "").empty?
       end
     end
   end

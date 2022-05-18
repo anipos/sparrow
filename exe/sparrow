@@ -5,7 +5,7 @@ require "yaml"
 
 require "sparrow"
 
-config = YAML.safe_load(File.read(ENV["SPARROW_CONFIG"]))
+config = YAML.safe_load(File.read(ENV.fetch("SPARROW_CONFIG", nil)))
 Sparrow::Master.new(config).start
 
 # TODO(shouichi): Graceful shutdown on SIGTERM.

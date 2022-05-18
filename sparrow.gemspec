@@ -28,10 +28,10 @@ Gem::Specification.new do |spec|
     spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/master/CHANGELOG.md"
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
-      "public gem pushes."
+          "public gem pushes."
   end
 
-  spec.required_ruby_version = ">= 2.6.0"
+  spec.required_ruby_version = ">= 3.0.0"
 
   # Specify which files should be added to the gem when it is released.  The
   # `git ls-files -z` loads the files in the RubyGem that have been added into
@@ -52,10 +52,11 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "rspec_junit_formatter", "~> 0.4"
-  spec.add_development_dependency "rubocop", "~> 0.74"
-  spec.add_development_dependency "rubocop-performance", "~> 1.5"
-  spec.add_development_dependency "rubocop-rspec", "~> 1.38"
+  spec.add_development_dependency "rubocop"
+  spec.add_development_dependency "rubocop-performance"
+  spec.add_development_dependency "rubocop-rspec"
   spec.add_development_dependency "vcr", "~> 6.0"
   spec.add_development_dependency "webmock", "~> 3.8"
   spec.add_development_dependency "yard", "~> 0.9"
+  spec.metadata["rubygems_mfa_required"] = "true"
 end

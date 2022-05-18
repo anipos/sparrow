@@ -30,7 +30,7 @@ RSpec.describe Sparrow::Jobs::GitOps::Rewrite do
     VCR.use_cassette("pull_request_exists") do
       pr = rewrite.run
 
-      expect(pr).to eq(nil)
+      expect(pr).to be_nil
     end
   end
 end

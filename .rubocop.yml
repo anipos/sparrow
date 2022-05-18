@@ -3,7 +3,7 @@ require:
   - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 3.0
   NewCops: enable
 
 Metrics/BlockLength:
@@ -34,6 +34,9 @@ RSpec/MultipleExpectations:
   Enabled: false
 
 RSpec/StubbedMock:
+  Enabled: false
+
+RSpec/VerifiedDoubleReference:
   Enabled: false
 
 Style/HashEachMethods:

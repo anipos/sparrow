@@ -2,6 +2,6 @@
 
 RSpec.describe Sparrow do
   it "has a version number" do
-    expect(Sparrow::VERSION).not_to be nil
+    expect(Sparrow::VERSION).not_to be_nil
   end
 end
