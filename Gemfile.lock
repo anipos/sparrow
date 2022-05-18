@@ -90,7 +90,7 @@ GEM
     octokit (4.22.0)
       faraday (>= 0.9)
       sawyer (~> 0.8.0, >= 0.5.3)
-    oj (3.13.9)
+    oj (3.13.11)
     os (1.1.4)
     ougai (2.0.0)
       oj (~> 3.10)
@@ -111,7 +111,7 @@ GEM
     rspec-expectations (3.11.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.11.0)
-    rspec-mocks (3.11.0)
+    rspec-mocks (3.11.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.11.0)
     rspec-support (3.11.0)
@@ -162,17 +162,17 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 2.0)
-  rake (~> 13.0)
-  rspec (~> 3.0)
-  rspec_junit_formatter (~> 0.4)
+  bundler
+  rake
+  rspec
+  rspec_junit_formatter
   rubocop
   rubocop-performance
   rubocop-rspec
   sparrow!
-  vcr (~> 6.0)
-  webmock (~> 3.8)
-  yard (~> 0.9)
+  vcr
+  webmock
+  yard
 
 BUNDLED WITH
    2.2.15

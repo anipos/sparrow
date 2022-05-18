@@ -29,6 +29,6 @@ jobs:
       - store_test_results:
           path: rspec
       - run:
-          command: bundle exec yardoc 'lib/**/*.rb'
+          command: bundle exec yardoc --fail-on-warning 'lib/**/*.rb'
       - store_artifacts:
           path: doc
