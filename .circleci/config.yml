@@ -22,19 +22,14 @@ jobs:
       - checkout
       - ruby/install-deps
       - run:
-          name: Rubocop
           command: bundle exec rubocop
       - run:
-          name: RSpec
-          # `bundle exec rspec` loads sparrow gem before simplecov starts that
-          # prevents simplecov from gathering code coverage.
-          command: rake spec
+          command: bundle exec rake spec
       - store_artifacts:
           path: coverage
       - store_test_results:
           path: rspec
       - run:
-          name: Yardoc
           command: bundle exec yardoc 'lib/**/*.rb'
       - store_artifacts:
           path: doc

@@ -1,17 +1,5 @@
 # frozen_string_literal: true
 
-# > Load and launch SimpleCov at the very top of your test/test_helper.rb
-# https://github.com/colszowka/simplecov/blob/c7690fcd94a75fa61dc843eefd07d4081716f95d/README.md
-require "simplecov"
-SimpleCov.start "test_frameworks" do
-  track_files "lib/**/*.rb"
-end
-
-if ENV["CODECOV_TOKEN"]
-  require "codecov"
-  SimpleCov.formatter = SimpleCov::Formatter::Codecov
-end
-
 require "bundler/setup"
 require "sparrow"
 require "vcr"
