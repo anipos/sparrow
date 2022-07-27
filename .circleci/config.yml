@@ -9,7 +9,7 @@ jobs:
       - image: cimg/ruby:3.1.2
         environment:
           - PUBSUB_EMULATOR_HOST: localhost:8085
-      - image: google/cloud-sdk:394.0.0
+      - image: google/cloud-sdk:395.0.0
         command:
           - gcloud
           - beta
