@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Publish Docker Image to Docker Hub.
-        uses: elgohr/Publish-Docker-Github-Action@master
+        uses: elgohr/Publish-Docker-Github-Action@v4
         with:
           name: anipos/sparrow
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
