@@ -83,9 +83,7 @@ module Sparrow
       end
 
       def emulator?
-        return false if env_present?("GOOGLE_APPLICATION_CREDENTIALS")
-
-        env_present?("PUBSUB_EMULATOR_HOST")
+        ENV.fetch("PUBSUB_EMULATOR_HOST", nil)
       end
 
       def create_topic(name)
@@ -99,10 +97,6 @@ module Sparrow
 
         topic = topic(topic_name)
         topic.subscribe(subscription_name)
-      end
-
-      def env_present?(key)
-        !ENV.fetch(key, "").empty?
       end
     end
   end
