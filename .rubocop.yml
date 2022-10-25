@@ -3,7 +3,7 @@ require:
   - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 3.0
+  TargetRubyVersion: 3.1
   NewCops: enable
 
 Metrics/BlockLength:
@@ -59,3 +59,8 @@ Lint/StructNewOverride:
 
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: comma
+
+# We don't use factory bot yet rubocop-rspec raises false positive warnings for
+# variables named "build".
+RSpec/FactoryBot:
+  Enabled: false

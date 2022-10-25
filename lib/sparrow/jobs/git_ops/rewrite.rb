@@ -95,7 +95,7 @@ module Sparrow
 
         def blob
           client.create_blob(@config_repo, rendered_template).tap do |blob|
-            logger.debug("created blob", blob: blob)
+            logger.debug("created blob", blob:)
           end
         end
 
