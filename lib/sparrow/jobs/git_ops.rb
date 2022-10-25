@@ -22,7 +22,7 @@ module Sparrow
 
       def _run
         unless should_handle?
-          Sparrow.logger.info("build is not repos source nor master, skipping", build: build)
+          Sparrow.logger.info("build is not repos source nor master, skipping", build:)
           return
         end
 
@@ -43,7 +43,7 @@ module Sparrow
       def build_rewrites(target)
         target["rewrites"].map do |rewrite|
           Rewrite.new(
-            build: build,
+            build:,
             name: rewrite["name"],
             source_repo: target["source_repo"],
             config_repo: target["config_repo"],

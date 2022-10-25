@@ -38,7 +38,7 @@ module Sparrow
 
       def body
         # https://api.slack.com/block-kit/building
-        { blocks: blocks }.to_json
+        { blocks: }.to_json
       end
 
       def blocks
@@ -62,7 +62,7 @@ module Sparrow
 
         {
           type: "section",
-          fields: fields
+          fields:
         }
       end
 
@@ -109,7 +109,7 @@ module Sparrow
             text: "View build"
           },
           url: build.log_url,
-          style: style
+          style:
         }.compact
       end
 
@@ -121,7 +121,7 @@ module Sparrow
             text: "View commit"
           },
           url: "https://github.com/#{github_repo}/commit/#{build.commit_sha}",
-          style: style
+          style:
         }.compact
       end
 

@@ -9,7 +9,7 @@ RSpec.describe Sparrow::Jobs::GitOps::Rewrite do
 
   let(:rewrite) do
     described_class.new(
-      build: build,
+      build:,
       name: "spec",
       source_repo: "anipos/sparrow",
       config_repo: "anipos/sparrow",
