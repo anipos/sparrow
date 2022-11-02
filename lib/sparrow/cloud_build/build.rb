@@ -44,7 +44,9 @@ module Sparrow
       end
 
       def repo_source?
-        !source["repoSource"].nil?
+        # source.repoSource is empty for new github connection method, but is not for legacy method.
+        # substitutions.REPO_NAME is empty for legacy method, but is not for new method.
+        !source["repoSource"].nil? || !repo_name.nil?
       end
 
       def to_json(*args)
