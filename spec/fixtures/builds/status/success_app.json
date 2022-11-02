@@ -17,7 +17,7 @@
     {
       "name": "gcr.io/kaniko-project/executor:v1.9.1",
       "args": [
-        "--dockerfile=go/cmd/daikoku_syncer/Dockerfile",
+        "--dockerfile=Dockerfile",
         "--destination=gcr.io/project-id/sparrow:238947c2440028cfff5388c7fba3aa4ca7ae92f5",
         "--build-arg=COMMIT_SHA=238947c2440028cfff5388c7fba3aa4ca7ae92f5",
         "--cache=true",
