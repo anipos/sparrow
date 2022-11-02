@@ -28,11 +28,11 @@ module Sparrow
       end
 
       def repo_name
-        resolved_repo_source["repoName"]
+        substitutions["REPO_NAME"]
       end
 
       def commit_sha
-        resolved_repo_source["commitSha"]
+        substitutions["COMMIT_SHA"]
       end
 
       def log_url
@@ -52,14 +52,6 @@ module Sparrow
       end
 
       private
-
-      def resolved_repo_source
-        source_provenance["resolvedRepoSource"] || {}
-      end
-
-      def source_provenance
-        data["sourceProvenance"] || {}
-      end
 
       def source
         data["source"] || {}
