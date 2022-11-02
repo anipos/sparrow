@@ -1,0 +1,74 @@
+{
+  "id": "70fab86c-ce58-4850-9ed4-6e2cbf9d999e",
+  "status": "SUCCESS",
+  "source": {},
+  "createTime": "2022-11-02T00:52:22.406677591Z",
+  "startTime": "2022-11-02T00:52:23.139239780Z",
+  "finishTime": "2022-11-02T00:53:38.311149Z",
+  "results": {
+    "buildStepImages": [
+      "sha256:238947c2440028cfff5388c7fba3aa4ca7ae92f5"
+    ],
+    "buildStepOutputs": [
+      ""
+    ]
+  },
+  "steps": [
+    {
+      "name": "gcr.io/kaniko-project/executor:v1.9.1",
+      "args": [
+        "--dockerfile=Dockerfile",
+        "--destination=gcr.io/project-id/sparrow:238947c2440028cfff5388c7fba3aa4ca7ae92f5",
+        "--build-arg=COMMIT_SHA=238947c2440028cfff5388c7fba3aa4ca7ae92f5",
+        "--cache=true",
+        "--cache-ttl=336h"
+      ],
+      "timing": {
+        "startTime": "2022-11-02T00:52:31.652559293Z",
+        "endTime": "2022-11-02T00:53:37.725909293Z"
+      },
+      "status": "SUCCESS",
+      "pullTiming": {
+        "startTime": "2022-11-02T00:52:31.652559293Z",
+        "endTime": "2022-11-02T00:52:32.795179502Z"
+      }
+    }
+  ],
+  "timeout": "600s",
+  "projectId": "project-id",
+  "logsBucket": "gs://12345.cloudbuild-logs.googleusercontent.com",
+  "sourceProvenance": {},
+  "buildTriggerId": "edef7062-fd8e-4ed6-a381-7e2f4a09fa77",
+  "options": {
+    "substitutionOption": "ALLOW_LOOSE",
+    "logging": "LEGACY",
+    "dynamicSubstitutions": true,
+    "pool": {}
+  },
+  "logUrl": "https://console.cloud.google.com/gcr/builds/02200e9c-0f7a-48c0-8050-5dcc60d3e310?project=918090106759",
+  "substitutions": {
+    "TRIGGER_NAME": "Build-sparrow-docker-image",
+    "TRIGGER_BUILD_CONFIG_PATH": "cloudbuild.yaml",
+    "REPO_NAME": "sparrow",
+    "REVISION_ID": "238947c2440028cfff5388c7fba3aa4ca7ae92f5",
+    "COMMIT_SHA": "238947c2440028cfff5388c7fba3aa4ca7ae92f5",
+    "SHORT_SHA": "238947c",
+    "BRANCH_NAME": "master",
+    "REF_NAME": "master"
+  },
+  "tags": [
+    "trigger-e9ba2adc-297b-4c79-9305-3fc6c3768db5"
+  ],
+  "timing": {
+    "FETCHSOURCE": {
+      "startTime": "2022-11-02T00:52:23.957488345Z",
+      "endTime": "2022-11-02T00:52:31.048481934Z"
+    },
+    "BUILD": {
+      "startTime": "2022-11-02T00:52:31.048562551Z",
+      "endTime": "2022-11-02T00:53:37.726002196Z"
+    }
+  },
+  "queueTtl": "3600s",
+  "name": "projects/12345/locations/global/builds/70fab86c-ce58-4850-9ed4-6e2cbf9d999e"
+}

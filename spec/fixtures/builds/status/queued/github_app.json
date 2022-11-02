@@ -1,0 +1,45 @@
+{
+  "id": "f8a5f83c-2920-4d56-ba83-7f80fa497e12",
+  "status": "QUEUED",
+  "source": {},
+  "createTime": "2022-11-02T02:40:58.264677507Z",
+  "steps": [
+    {
+      "name": "gcr.io/kaniko-project/executor:v1.9.1",
+      "args": [
+        "--dockerfile=Dockerfile",
+        "--destination=gcr.io/project-id/sparrow:238947c2440028cfff5388c7fba3aa4ca7ae92f5",
+        "--build-arg=COMMIT_SHA=238947c2440028cfff5388c7fba3aa4ca7ae92f5",
+        "--cache=true",
+        "--compressed-caching=false",
+        "--cache-ttl=336h"
+      ]
+    }
+  ],
+  "timeout": "1200s",
+  "projectId": "project-id",
+  "logsBucket": "gs://12345.cloudbuild-logs.googleusercontent.com",
+  "buildTriggerId": "378e25e1-5a4c-44d2-b39b-9bb8f5524f4b",
+  "options": {
+    "substitutionOption": "ALLOW_LOOSE",
+    "logging": "LEGACY",
+    "dynamicSubstitutions": true,
+    "pool": {}
+  },
+  "logUrl": "https://console.cloud.google.com/cloud-build/builds/f8a5f83c-2920-4d56-ba83-7f80fa497e12?project=12345",
+  "substitutions": {
+    "TRIGGER_BUILD_CONFIG_PATH": "cloudbuild.yaml",
+    "REPO_NAME": "sparrow",
+    "REVISION_ID": "238947c2440028cfff5388c7fba3aa4ca7ae92f5",
+    "COMMIT_SHA": "238947c2440028cfff5388c7fba3aa4ca7ae92f5",
+    "SHORT_SHA": "238947c",
+    "BRANCH_NAME": "master",
+    "REF_NAME": "master",
+    "TRIGGER_NAME": "Build-sparrow-docker-image"
+  },
+  "tags": [
+    "trigger-378e25e1-5a4c-44d2-b39b-9bb8f5524f4b"
+  ],
+  "queueTtl": "3600s",
+  "name": "projects/12345/locations/global/builds/f8a5f83c-2920-4d56-ba83-7f80fa497e12"
+}

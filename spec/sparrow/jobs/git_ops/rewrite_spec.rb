@@ -3,7 +3,7 @@
 RSpec.describe Sparrow::Jobs::GitOps::Rewrite do
   let(:build) do
     Sparrow::CloudBuild::Build.new(
-      JSON.parse(fixture("builds", "branch", "master.json"))
+      JSON.parse(fixture("builds", "branch", "master", "github_legacy.json"))
     )
   end
 

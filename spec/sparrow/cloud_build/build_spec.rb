@@ -11,26 +11,50 @@ RSpec.describe Sparrow::CloudBuild::Build do
       end
     end
 
-    describe "queued.json" do
-      let(:names) { %w[builds status queued.json] }
+    shared_examples "queued" do |json|
+      let(:names) { %W[builds status queued #{json}] }
 
       include_examples "status", "QUEUED"
     end
 
-    describe "working.json" do
-      let(:names) { %w[builds status working.json] }
+    describe "queued github_legacy.json" do
+      include_examples "queued", "github_legacy.json"
+    end
+
+    describe "queued github_app.json" do
+      include_examples "queued", "github_app.json"
+    end
+
+    shared_examples "working" do |json|
+      let(:names) { %W[builds status working #{json}] }
 
       include_examples "status", "WORKING"
     end
 
-    describe "failure.json" do
-      let(:names) { %w[builds status failure.json] }
+    describe "working github_legacy.json" do
+      include_examples "working", "github_legacy.json"
+    end
+
+    describe "working github_app.json" do
+      include_examples "working", "github_app.json"
+    end
+
+    shared_examples "failure" do |json|
+      let(:names) { %W[builds status failure #{json}] }
 
       include_examples "status", "FAILURE"
     end
 
-    describe "success.json" do
-      let(:names) { %w[builds status success.json] }
+    describe "failure github_legacy.json" do
+      include_examples "failure", "github_legacy.json"
+    end
+
+    describe "failure github_app.json" do
+      include_examples "failure", "github_app.json"
+    end
+
+    shared_examples "success" do |json|
+      let(:names) { %W[builds status success #{json}] }
 
       include_examples "status", "SUCCESS"
 
@@ -53,11 +77,19 @@ RSpec.describe Sparrow::CloudBuild::Build do
         expect(build.repo_source?).to be(true)
       end
     end
+
+    describe "success github_legacy.json" do
+      include_examples "success", "github_legacy.json"
+    end
+
+    describe "success github_app.json" do
+      include_examples "success", "github_app.json"
+    end
   end
 
   describe "branch" do
-    describe "master.json" do
-      let(:names) { %w[builds branch master.json] }
+    shared_examples "master" do |json|
+      let(:names) { %W[builds branch master #{json}] }
 
       it "#branch returns master" do
         expect(build.branch).to eq("master")
@@ -66,6 +98,14 @@ RSpec.describe Sparrow::CloudBuild::Build do
       it "#master_branch? returns true" do
         expect(build.master_branch?).to be(true)
       end
+    end
+
+    describe "master github_legacy.json" do
+      include_examples "master", "github_legacy.json"
+    end
+
+    describe "master github_app.json" do
+      include_examples "master", "github_app.json"
     end
   end
 
@@ -80,7 +120,7 @@ RSpec.describe Sparrow::CloudBuild::Build do
   end
 
   describe "#to_json" do
-    let(:names) { %w[builds status success.json] }
+    let(:names) { %w[builds status success github_legacy.json] }
 
     it "does not raise error" do
       expect { build.to_json }.not_to raise_error
