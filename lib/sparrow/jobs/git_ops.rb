@@ -13,7 +13,7 @@ module Sparrow
     #   1. Evaluates the given ERB file.
     #   2. Writes the result to the given output file.
     #   3. Commits the output file.
-    #   4. Creates a pull request.
+    #   4. Creates a pull request or pushes to master.
     #
     # It requires the following environment variables.
     #   - GITHUB_TOKEN: github personal access token ("repo" scope)
@@ -40,6 +40,7 @@ module Sparrow
         end
       end
 
+      # rubocop:disable Metrics/MethodLength
       def build_rewrites(target)
         target["rewrites"].map do |rewrite|
           Rewrite.new(
@@ -48,10 +49,13 @@ module Sparrow
             source_repo: target["source_repo"],
             config_repo: target["config_repo"],
             erb_path: rewrite["erb_path"],
-            out_path: rewrite["out_path"]
+            out_path: rewrite["out_path"],
+            # if not specified, it makes PR.
+            bypass_pull_request: rewrite["bypass_pull_request"] || false
           )
         end
       end
+      # rubocop:enable Metrics/MethodLength
     end
   end
 end

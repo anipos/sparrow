@@ -16,7 +16,8 @@ module Sparrow
           source_repo:,
           config_repo:,
           erb_path:,
-          out_path:
+          out_path:,
+          bypass_pull_request:
         )
           # rubocop:enable Metrics/ParameterLists
           @build = build
@@ -25,9 +26,9 @@ module Sparrow
           @config_repo = config_repo
           @erb_path = erb_path
           @out_path = out_path
+          @bypass_pull_request = bypass_pull_request
         end
 
-        # rubocop:disable Metrics/MethodLength
         def run
           unless match?
             logger.info("build does not match, skipping")
@@ -39,16 +40,8 @@ module Sparrow
             return
           end
 
-          begin
-            pr = create_pull_request
-            logger.info("created a pull request", pr: pr.to_h)
-            pr
-          rescue Octokit::UnprocessableEntity => e
-            logger.info("pull request exists, skipping", error: e)
-            nil
-          end
+          create_pull_request_or_push_master
         end
-        # rubocop:enable Metrics/MethodLength
 
         private
 
@@ -77,12 +70,16 @@ module Sparrow
         end
 
         def no_changes?
-          comparision = client.compare(
+          comparison = client.compare(
             @config_repo,
             "master",
             commit.sha
           )
-          comparision.files.empty?
+          comparison.files.empty?
+        end
+
+        def bypass_pull_request?
+          @bypass_pull_request
         end
 
         def pull_requests
@@ -131,8 +128,8 @@ module Sparrow
           end
         end
 
-        def ref
-          @ref ||= client.create_ref(@config_repo, branch_name, commit.sha).tap do |ref|
+        def create_ref
+          client.create_ref(@config_repo, branch_name, commit.sha).tap do |ref|
             logger.debug("created ref", ref: ref.to_h)
           end
         end
@@ -141,14 +138,30 @@ module Sparrow
           client.create_pull_request(
             @config_repo,
             "master",
-            ref.ref,
+            create_ref.ref,
             title,
             body
-          )
+          ).tap do |pr|
+            logger.info("created a pull request", pr: pr.to_h)
+          end
+        end
+
+        def push_master
+          client.update_ref(@config_repo, branch_name, commit.sha).tap do |ref|
+            logger.info("commit and push to master", ref: ref.to_h)
+          end
+          commit
+        end
+
+        def create_pull_request_or_push_master
+          bypass_pull_request? ? push_master : create_pull_request
+        rescue Octokit::UnprocessableEntity => e
+          logger.info("pull request or commit exists, skipping", error: e)
+          nil
         end
 
         def branch_name
-          "heads/gitops-#{@build.commit_sha}-#{sanitized_name}"
+          bypass_pull_request? ? "heads/master" : "heads/gitops-#{@build.commit_sha}-#{sanitized_name}"
         end
 
         def sanitized_name

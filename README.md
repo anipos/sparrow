@@ -37,8 +37,8 @@ We plan to support
 
 ### Rewrite Container Image Tags in Kubernetes Manifests
 
-Sparrow rewrites container image tags in Kubernetes manifest files by creating
-pull requests on GitHub.
+Sparrow rewrites container image tags in Kubernetes manifest files on GitHub
+by creating pull requests or pushing to master branch.
 
 Sparrow assumes an app
 
@@ -49,7 +49,14 @@ When a commit is pushed to the code repository's master branch,
 
 1. Cloud Build builds a container image where its tag is git SHA.
 1. The event is published to Cloud PubSub.
-1. Sparrow creates a tag rewrite pull request to the config repository.
+1. Sparrow rewrites the tag in the config repository and creates a pull request or pushes the change to the master branch.
+
+It should be noted that if you want to bypass creating pull requests and push to the master branch directly,
+the branch protection rule needs to be configured correctly that allows bypassing pull requests.
+https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule
+
+For now, Sparrow supports the GitHub repositories connected to the Cloud Build
+via GitHub App or through Cloud Source Repositories.
 
 A commit message of tag rewriting contains
 
@@ -90,7 +97,7 @@ jobs:
     subscription: gitops
     class_args:
       targets:
-        # When an event is from repository "org/app1", evaluates the ERB
+        # When an event is from repository "org/app1", Sparrow evaluates the ERB
         # template at `overlays/dev/kustomization.yaml.erb` in the
         # configuration repository `org/app1-conf` and writes the evaluated
         # result to `overlays/dev/kustomization.yaml`.
@@ -100,6 +107,8 @@ jobs:
             - name: dev
               erb_path: overlays/dev/kustomization.yaml.erb
               out_path: overlays/dev/kustomization.yaml
+              # If set to true, changes are pushed to master branch directly. (default: false)
+              bypass_pull_request: true
 ```
 
 ## Deployment
