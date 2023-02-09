@@ -1,5 +1,5 @@
 # Base image
-FROM ruby:3.1.3 as base
+FROM ruby:3.2.1 as base
 
 ENV LANG C.UTF-8
 
