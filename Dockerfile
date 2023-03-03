@@ -3,7 +3,9 @@ FROM ruby:3.2.1 as base
 
 ENV LANG C.UTF-8
 
-ENV APP_ROOT /app
+ENV APP_ROOT /sparrow
+
+ENV SPARROW_VERSION 0.1.0
 
 WORKDIR $APP_ROOT
 
@@ -21,13 +23,14 @@ RUN rake build
 # Final image
 FROM base
 
-ENV SPARROW_VERSION 0.1.0
-
-COPY --from=builder /app/pkg/sparrow-$SPARROW_VERSION.gem .
+COPY --from=builder $APP_ROOT/pkg/sparrow-$SPARROW_VERSION.gem .
 RUN gem install sparrow-$SPARROW_VERSION.gem
 
 # To tell sentry the sparrow version.
 # https://docs.sentry.io/platforms/ruby/configuration/options/
 RUN echo $SPARROW_VERSION > REVISION
+
+RUN useradd sparrow
+USER sparrow:sparrow
 
 ENTRYPOINT ["sparrow"]
