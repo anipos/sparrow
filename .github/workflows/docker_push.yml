@@ -1,21 +1,27 @@
-name: docker push
-
 on:
   push:
-    branches:
-      - "**"
     tags:
-      - "**"
-
+      - 'v*'
 jobs:
-  push:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Publish Docker Image to Docker Hub.
-        uses: elgohr/Publish-Docker-Github-Action@v5
+      - uses: actions/checkout@v2
+      - uses: docker/metadata-action@v4
+        id: meta
         with:
-          name: anipos/sparrow
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
-          tag_semver: true
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+      - uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
