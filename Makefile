@@ -1,18 +1,18 @@
-.RUN_CONTEXT = docker-compose exec ruby
+.RUN_CONTEXT = docker compose exec ruby
 
 up:
-	docker-compose up -d
+	docker compose up -d
 
 down:
-	docker-compose down --remove-orphans
+	docker compose down --remove-orphans
 
 restart: down up logs
 
 logs:
-	docker-compose logs -f
+	docker compose logs -f
 
 build:
-	docker-compose build
+	docker compose build
 
 bash:
 	$(.RUN_CONTEXT) bash
