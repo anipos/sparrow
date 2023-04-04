@@ -114,7 +114,7 @@ jobs:
 ## Deployment
 
 You can deploy Sparrow using Docker. Docker image is available at
-https://hub.docker.com/r/anipos/sparrow.
+https://github.com/anipos/sparrow/pkgs/container/sparrow.
 
 Sparrow requires
 
