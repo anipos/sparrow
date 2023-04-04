@@ -1,5 +1,11 @@
 {
   "extends": [
     "config:base"
-  ]
+  ],
+  "automerge": true,
+  "prConcurrentLimit": 1,
+  "ruby": {
+    // Use dependabot.
+    "enabled": false,
+  },
 }
