@@ -40,6 +40,6 @@ VCR.configure do |config|
   end
 end
 
-def fixture(*name)
-  File.read(File.join("spec", "fixtures", File.join(*name)))
+def fixture(*)
+  File.read(File.join("spec", "fixtures", File.join(*)))
 end

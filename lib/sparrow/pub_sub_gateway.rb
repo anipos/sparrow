@@ -83,7 +83,7 @@ module Sparrow
       end
 
       def emulator?
-        ENV.fetch("PUBSUB_EMULATOR_HOST", nil)
+        ENV.fetch("PUBSUB_EMULATOR_HOST", false)
       end
 
       def create_topic(name)
