@@ -20,13 +20,11 @@ RSpec.describe Sparrow::Jobs::GitOps do
 
     expect(message).to receive(:data).and_return("{}")
 
-    allow(gitops).to receive(:build).and_return(build)
+    allow(gitops).to receive_messages(build:, content: yaml)
 
     expect(build).to receive(:repo_source?).and_return(true)
     expect(build).to receive(:master_branch?).and_return(true)
     expect(build).to receive(:success?).and_return(true)
-
-    allow(gitops).to receive(:content).and_return(yaml)
 
     allow(Sparrow::Jobs::GitOps::Rewrite).to receive(:new).and_return(rewrite)
 
