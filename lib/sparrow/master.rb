@@ -12,7 +12,7 @@ module Sparrow
 
     # Starts workers and blocks for them to exit.
     def start
-      workers.map(&:start).map(&:wait!)
+      workers.map { _1.start.wait! }
     end
 
     private
