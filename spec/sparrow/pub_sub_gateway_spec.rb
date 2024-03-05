@@ -9,7 +9,7 @@ RSpec.describe Sparrow::PubSubGateway do
   let(:topic_name) { "topic_name_#{SecureRandom.hex}" }
   let(:subscription_name) { "subscription_name_#{SecureRandom.hex}" }
   let(:worker) { instance_double("fake_worker") }
-  let(:pubsub) { Sparrow::PubSubGateway::Client.new(project_id) }
+  let(:pubsub) { described_class::Client.new(project_id) }
 
   it "calls Worker#process_message" do
     subscriber = gateway.subscribe(worker)

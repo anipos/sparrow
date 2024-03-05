@@ -26,7 +26,7 @@ RSpec.describe Sparrow::Jobs::GitOps do
     expect(build).to receive(:master_branch?).and_return(true)
     expect(build).to receive(:success?).and_return(true)
 
-    allow(Sparrow::Jobs::GitOps::Rewrite).to receive(:new).and_return(rewrite)
+    allow(described_class::Rewrite).to receive(:new).and_return(rewrite)
 
     expect(rewrite).to receive(:run)
 
