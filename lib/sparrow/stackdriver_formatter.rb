@@ -8,7 +8,7 @@ module Sparrow
         data[:message] = data.delete(:msg)
         data[:severity] = severity
         data[:eventTime] = time
-        super(severity, time, progname, data)
+        super
       else
         super(severity, time, progname, { message: data.to_s })
       end
