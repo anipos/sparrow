@@ -6,7 +6,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/ruby:3.3.3
+      - image: cimg/ruby:3.3.4
         environment:
           - PUBSUB_EMULATOR_HOST: localhost:8085
       - image: google/cloud-sdk:483.0.0
