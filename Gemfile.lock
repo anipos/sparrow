@@ -54,7 +54,7 @@ GEM
       gapic-common (>= 0.21.1, < 2.a)
       google-cloud-errors (~> 1.0)
       grpc-google-iam-v1 (~> 1.1)
-    google-protobuf (3.25.3-x86_64-linux)
+    google-protobuf (3.25.5-x86_64-linux)
     googleapis-common-protos (1.6.0)
       google-protobuf (>= 3.18, < 5.a)
       googleapis-common-protos-types (~> 1.7)
