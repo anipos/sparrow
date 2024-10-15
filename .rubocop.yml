@@ -33,6 +33,9 @@ RSpec/MessageSpies:
 RSpec/MultipleExpectations:
   Enabled: false
 
+RSpec/StringAsInstanceDoubleConstant:
+  Enabled: false
+
 RSpec/StubbedMock:
   Enabled: false
 
