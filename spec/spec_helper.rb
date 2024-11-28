@@ -22,7 +22,7 @@ RSpec.configure do |config|
   config.before(:all) do
     # Supress logging.
     Sparrow.instance_eval do
-      @logger = Ougai::Logger.new("/dev/null")
+      @logger = Ougai::Logger.new(File::NULL)
     end
   end
 end
