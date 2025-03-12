@@ -83,7 +83,7 @@ GEM
       googleapis-common-protos (~> 1.4)
       grpc (~> 1.41)
     hashdiff (1.1.2)
-    json (2.10.1)
+    json (2.10.2)
     jwt (2.10.1)
       base64
     language_server-protocol (3.17.0.4)
