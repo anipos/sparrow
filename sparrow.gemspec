@@ -46,7 +46,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "google-cloud-pubsub", ">= 1.6", "< 3.0"
   spec.add_dependency "octokit", ">= 4.15", "< 11.0"
   spec.add_dependency "ougai", ">= 1.8", "< 3.0"
-  spec.add_dependency "sentry-ruby", ">= 4", "< 6"
+  spec.add_dependency "sentry-ruby", ">= 4", "< 7"
 
   spec.metadata["rubygems_mfa_required"] = "true"
 end
