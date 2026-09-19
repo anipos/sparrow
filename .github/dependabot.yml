@@ -8,6 +8,8 @@ updates:
   pull-request-branch-name:
     separator: "-"
   open-pull-requests-limit: 10
+  allow:
+  - dependency-type: all
 - package-ecosystem: docker
   directory: "/"
   schedule:
