@@ -40,7 +40,7 @@ module Sparrow
         end
       end
 
-      # rubocop:disable Metrics/MethodLength
+      # rubocop:disable-next Metrics/MethodLength
       def build_rewrites(target)
         target["rewrites"].map do |rewrite|
           Rewrite.new(
@@ -55,7 +55,6 @@ module Sparrow
           )
         end
       end
-      # rubocop:enable Metrics/MethodLength
     end
   end
 end

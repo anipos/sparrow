@@ -8,6 +8,8 @@ module Sparrow
   module Jobs
     # Notifies builds to slack.
     class Slack < Base # rubocop:disable Metrics/ClassLength
+      HEADERS = { "Content-Type": "application/json" }.freeze
+
       private
 
       def _run
@@ -142,8 +144,6 @@ module Sparrow
       def faraday
         Faraday
       end
-
-      HEADERS = { "Content-Type": "application/json" }.freeze
     end
   end
 end

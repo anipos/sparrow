@@ -1,4 +1,4 @@
-require:
+plugins:
   - rubocop-performance
   - rubocop-rspec
 
@@ -31,9 +31,6 @@ RSpec/MessageSpies:
   EnforcedStyle: receive
 
 RSpec/MultipleExpectations:
-  Enabled: false
-
-RSpec/StringAsInstanceDoubleConstant:
   Enabled: false
 
 RSpec/StubbedMock:
