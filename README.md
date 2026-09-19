@@ -127,6 +127,15 @@ The IAM key must have
 - roles/pubsub.subscriber
 - roles/pubsub.viewer
 
+### Failed Jobs
+
+A failed job is logged and reported to Sentry (`SENTRY_DSN`). If the failure
+may succeed later (connection errors, timeouts, 5xx responses, GitHub rate
+limits), the message is nacked and Cloud PubSub redelivers it. Any other
+failure acknowledges the message so a bug or a malformed event does not loop
+forever. Configure a retry policy with exponential backoff and a dead-letter
+topic on each subscription to bound the redeliveries.
+
 ## Development
 
 TBA.

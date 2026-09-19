@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+require "faraday"
 require "google/cloud/pubsub"
+require "octokit"
 require "sentry-ruby"
 
 module Sparrow
@@ -10,6 +12,13 @@ module Sparrow
   #   - roles/pubsub.subscriber
   #   - roles/pubsub.viewer
   class PubSubGateway
+    RETRYABLE_ERRORS = [
+      Faraday::ConnectionFailed,
+      Faraday::ServerError,
+      Octokit::ServerError,
+      Octokit::TooManyRequests,
+    ].freeze
+
     def initialize(project_id, topic_name, subscription_name)
       @project_id = project_id
       @topic_name = topic_name
@@ -51,9 +60,14 @@ module Sparrow
         worker.process_message(message)
         message.acknowledge!
       rescue StandardError => e
-        logger.error("job failed", e, message: message.data)
+        logger.error("job failed", e, message: message.data, retry: retryable?(e))
         Sentry.capture_exception(e) { |scope| scope.set_extras(message: message.data) }
+        retryable?(e) ? message.reject! : message.acknowledge!
       end
+    end
+
+    def retryable?(error)
+      RETRYABLE_ERRORS.any? { error.is_a?(_1) }
     end
 
     # The emulator aware pubsub client.

@@ -45,6 +45,44 @@ RSpec.describe Sparrow::PubSubGateway do
     expect(Sentry.get_current_client.transport.events.count).to eq(1)
   end
 
+  def failing_worker(error)
+    events = Queue.new
+    allow(worker).to receive(:process_message) do |message|
+      record_settlement(message, events)
+      raise error
+    end
+    events
+  end
+
+  def record_settlement(message, events)
+    %i[acknowledge! reject!].each do |method|
+      allow(message).to receive(method).and_wrap_original do |original|
+        events << method
+        original.call
+      end
+    end
+  end
+
+  it "acknowledges the message when the job fails with a non-retryable error" do
+    events = failing_worker(RuntimeError.new("boom"))
+    subscriber = gateway.subscribe(worker)
+    pubsub.topic(topic_name).publish("hello")
+
+    expect(events.pop(timeout: 5)).to eq(:acknowledge!)
+    expect(events.pop(timeout: 2)).to be_nil
+    subscriber.stop.wait!
+  end
+
+  it "rejects the message so that it is redelivered when the job fails with a retryable error" do
+    events = failing_worker(Faraday::ConnectionFailed.new("down"))
+    subscriber = gateway.subscribe(worker)
+    pubsub.topic(topic_name).publish("hello")
+
+    expect(events.pop(timeout: 5)).to eq(:reject!)
+    expect(events.pop(timeout: 5)).to eq(:reject!)
+    subscriber.stop.wait!
+  end
+
   it "logs worker exception even when Sentry is not initialized" do
     Sentry.close if Sentry.initialized?
     logger = instance_double(Ougai::Logger)
