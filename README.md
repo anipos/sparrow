@@ -31,8 +31,6 @@ has links to
 
 We plan to support
 
-- filtering (e.g., only failed builds)
-- mention
 - sending messages to different channels (based on rules)
 
 ### Rewrite Container Image Tags in Kubernetes Manifests
@@ -88,6 +86,16 @@ jobs:
   - class: Slack
     project_id: project-a
     subscription: slack
+    class_args:
+      # Statuses to notify. (default: QUEUED, WORKING, SUCCESS, FAILURE)
+      # FAILURE also covers INTERNAL_ERROR, TIMEOUT and EXPIRED.
+      only:
+        - SUCCESS
+        - FAILURE
+      # Slack user (@U024BE7LH) or group (!subteam^SAZ94GDB8) to mention per
+      # status.
+      mention:
+        FAILURE: "@U024BE7LH"
 
   # Run `GitOps` job on events streamed from `project-b`'s Cloud PubSub
   # subscription `gitops`. `GitOps` updates container image tags on kubernetes

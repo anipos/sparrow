@@ -25,7 +25,12 @@ module Sparrow
       end
 
       def status_matches?
-        target_statuses.include?(build.status)
+        target_statuses.intersect?(status_keys)
+      end
+
+      # FAILURE in the config also covers the other failed statuses.
+      def status_keys
+        build.failed? ? [build.status, "FAILURE"].uniq : [build.status]
       end
 
       def target_statuses
@@ -81,7 +86,7 @@ module Sparrow
         #   - user: @U024BE7LH
         #   - group: !subteam^SAZ94GDB8
         # See https://api.slack.com/reference/surfaces/formatting
-        user_or_group = mention_on_status[build.status]
+        user_or_group = status_keys.filter_map { mention_on_status[_1] }.first
         return unless user_or_group
 
         {
@@ -128,10 +133,9 @@ module Sparrow
       end
 
       def style
-        {
-          "SUCCESS" => "primary",
-          "FAILURE" => "danger"
-        }[build.status]
+        return "primary" if build.success?
+
+        "danger" if build.failed?
       end
 
       # Visible for testing.

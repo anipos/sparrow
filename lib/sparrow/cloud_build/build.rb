@@ -5,6 +5,8 @@ module Sparrow
     # A message in the cloud build pubsub topic ("cloud-builds").
     # https://cloud.google.com/cloud-build/docs/api/reference/rest/v1/projects.builds
     class Build
+      FAILED_STATUSES = %w[FAILURE INTERNAL_ERROR TIMEOUT EXPIRED].freeze
+
       attr_reader :data
 
       def initialize(data)
@@ -17,6 +19,10 @@ module Sparrow
 
       def success?
         status == "SUCCESS"
+      end
+
+      def failed?
+        FAILED_STATUSES.include?(status)
       end
 
       def status
