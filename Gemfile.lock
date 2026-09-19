@@ -103,7 +103,7 @@ GEM
     ougai (2.1.0)
       logger (~> 1.5)
       oj (~> 3.17)
-    parallel (1.26.3)
+    parallel (1.28.0)
     parser (3.3.7.0)
       ast (~> 2.4.1)
       racc
