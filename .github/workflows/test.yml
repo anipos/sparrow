@@ -20,7 +20,7 @@ jobs:
           ruby-version: ${{ steps.ruby.outputs.version }}
           bundler-cache: true
       - run: bundle exec rubocop
-      - uses: google-github-actions/setup-gcloud@v2
+      - uses: google-github-actions/setup-gcloud@v3
         with:
           install_components: beta,pubsub-emulator
       - run: |
