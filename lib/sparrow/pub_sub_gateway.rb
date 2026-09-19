@@ -51,10 +51,8 @@ module Sparrow
         worker.process_message(message)
         message.acknowledge!
       rescue StandardError => e
-        Sentry.with_scope do |scope|
-          scope.set_extras(message: message.data)
-          Sentry.capture_exception(e)
-        end
+        logger.error("job failed", e, message: message.data)
+        Sentry.capture_exception(e) { |scope| scope.set_extras(message: message.data) }
       end
     end
 
