@@ -22,13 +22,18 @@ RSpec.describe Sparrow::Master do
     config = YAML.safe_load(yaml)
     master = described_class.new(config)
 
+    calls = []
+
     subscription = instance_double("subscription")
-    expect(subscription).to receive(:wait!).twice
+    expect(subscription).to receive(:wait!).twice do
+      calls << :wait!
+    end
 
     worker = instance_double("worker")
-    expect(worker).to receive(:start)
-      .twice
-      .and_return(subscription)
+    expect(worker).to receive(:start).twice do
+      calls << :start
+      subscription
+    end
 
     expect(Sparrow::Worker).to receive(:new)
       .twice
@@ -36,5 +41,7 @@ RSpec.describe Sparrow::Master do
       .and_return(worker)
 
     expect { master.start }.not_to raise_error
+    # wait! blocks forever in production, so every worker must be started before waiting on any.
+    expect(calls).to eq(%i[start start wait! wait!])
   end
 end
