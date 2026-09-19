@@ -55,8 +55,8 @@ It should be noted that if you want to bypass creating pull requests and push to
 the branch protection rule needs to be configured correctly that allows bypassing pull requests.
 https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule
 
-For now, Sparrow supports the GitHub repositories connected to the Cloud Build
-via GitHub App or through Cloud Source Repositories.
+Sparrow supports the GitHub repositories connected to the Cloud Build via
+GitHub App.
 
 A commit message of tag rewriting contains
 

@@ -17,10 +17,6 @@ RSpec.describe Sparrow::CloudBuild::Build do
       include_examples "status", "QUEUED"
     end
 
-    describe "queued github_legacy.json" do
-      include_examples "queued", "github_legacy.json"
-    end
-
     describe "queued github_app.json" do
       include_examples "queued", "github_app.json"
     end
@@ -31,10 +27,6 @@ RSpec.describe Sparrow::CloudBuild::Build do
       include_examples "status", "WORKING"
     end
 
-    describe "working github_legacy.json" do
-      include_examples "working", "github_legacy.json"
-    end
-
     describe "working github_app.json" do
       include_examples "working", "github_app.json"
     end
@@ -43,10 +35,6 @@ RSpec.describe Sparrow::CloudBuild::Build do
       let(:names) { %W[builds status failure #{json}] }
 
       include_examples "status", "FAILURE"
-    end
-
-    describe "failure github_legacy.json" do
-      include_examples "failure", "github_legacy.json"
     end
 
     describe "failure github_app.json" do
@@ -78,10 +66,6 @@ RSpec.describe Sparrow::CloudBuild::Build do
       end
     end
 
-    describe "success github_legacy.json" do
-      include_examples "success", "github_legacy.json"
-    end
-
     describe "success github_app.json" do
       include_examples "success", "github_app.json"
     end
@@ -100,10 +84,6 @@ RSpec.describe Sparrow::CloudBuild::Build do
       end
     end
 
-    describe "master github_legacy.json" do
-      include_examples "master", "github_legacy.json"
-    end
-
     describe "master github_app.json" do
       include_examples "master", "github_app.json"
     end
@@ -119,8 +99,28 @@ RSpec.describe Sparrow::CloudBuild::Build do
     end
   end
 
+  describe "#github_repo" do
+    context "with github_app.json without REPO_FULL_NAME" do
+      let(:names) { %w[builds status success github_app.json] }
+
+      it "returns nil" do
+        expect(build.github_repo).to be_nil
+      end
+    end
+
+    context "with REPO_FULL_NAME" do
+      let(:names) { %w[builds status success github_app.json] }
+
+      before { data["substitutions"]["REPO_FULL_NAME"] = "anipos/sparrow" }
+
+      it "prefers REPO_FULL_NAME" do
+        expect(build.github_repo).to eq("anipos/sparrow")
+      end
+    end
+  end
+
   describe "#to_json" do
-    let(:names) { %w[builds status success github_legacy.json] }
+    let(:names) { %w[builds status success github_app.json] }
 
     it "does not raise error" do
       expect { build.to_json }.not_to raise_error
