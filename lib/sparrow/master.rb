@@ -12,7 +12,14 @@ module Sparrow
 
     # Starts all workers and then blocks until every one of them exits.
     def start
-      workers.map(&:start).each(&:wait!)
+      @subscribers = workers.map(&:start)
+      @subscribers.each(&:wait!)
+    end
+
+    # Stops receiving messages; unblocks `start` once in-flight jobs finish.
+    def stop
+      Sparrow.logger.info("stopping workers")
+      @subscribers&.each(&:stop)
     end
 
     private
