@@ -2,8 +2,10 @@
 # frozen_string_literal: true
 
 require "yaml"
-
+require "sentry-ruby"
 require "sparrow"
+
+Sentry.init
 
 config = YAML.safe_load_file(ENV.fetch("SPARROW_CONFIG", nil))
 Sparrow::Master.new(config).start

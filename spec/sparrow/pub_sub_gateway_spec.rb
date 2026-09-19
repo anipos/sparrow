@@ -44,4 +44,24 @@ RSpec.describe Sparrow::PubSubGateway do
     subscriber.stop.wait!
     expect(Sentry.get_current_client.transport.events.count).to eq(1)
   end
+
+  it "logs worker exception even when Sentry is not initialized" do
+    Sentry.close if Sentry.initialized?
+    logger = instance_double(Ougai::Logger)
+    allow(Sparrow).to receive(:logger).and_return(logger)
+    allow(logger).to receive(:child).and_return(logger)
+    # Called exactly once by the rescue in #listen, never by #on_error.
+    expect(logger).to receive(:error)
+      .once
+      .with("job failed", an_instance_of(RuntimeError), hash_including(message: "hello"))
+    subscriber = gateway.subscribe(worker)
+
+    expect(worker).to receive(:process_message).and_raise("boom")
+    topic = pubsub.topic(topic_name)
+    topic.publish("hello")
+
+    # No proper way to wait for the message to arrive.
+    sleep 1
+    subscriber.stop.wait!
+  end
 end
