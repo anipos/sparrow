@@ -1,0 +1,40 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      PUBSUB_EMULATOR_HOST: localhost:8085
+    steps:
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+      - id: ruby
+        run: echo "version=$(sed -nE 's/^FROM ruby:([0-9.]+).*/\1/p' Dockerfile | head -1)" >> "$GITHUB_OUTPUT"
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ steps.ruby.outputs.version }}
+          bundler-cache: true
+      - run: bundle exec rubocop
+      - uses: google-github-actions/setup-gcloud@v2
+        with:
+          install_components: beta,pubsub-emulator
+      - run: |
+          gcloud beta emulators pubsub start --host-port=$PUBSUB_EMULATOR_HOST > pubsub-emulator.log 2>&1 &
+          for _ in $(seq 1 30); do
+            curl -sf "http://$PUBSUB_EMULATOR_HOST/v1/projects/ci/topics" > /dev/null && exit 0
+            sleep 1
+          done
+          cat pubsub-emulator.log
+          exit 1
+      - run: bundle exec rspec
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rspec
+          path: rspec/rspec.xml
+      - run: bundle exec yardoc --fail-on-warning 'lib/**/*.rb'
