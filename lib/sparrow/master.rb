@@ -10,9 +10,9 @@ module Sparrow
       @config = config
     end
 
-    # Starts workers and blocks for them to exit.
+    # Starts all workers and then blocks until every one of them exits.
     def start
-      workers.map { _1.start.wait! }
+      workers.map(&:start).each(&:wait!)
     end
 
     private
