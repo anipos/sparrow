@@ -7,7 +7,7 @@ module Sparrow
   module Jobs
     class GitOps < Base
       # @private
-      # rubocop:disable Metrics/ClassLength
+      # rubocop:disable-next Metrics/ClassLength
       class Rewrite
         # rubocop:disable Metrics/ParameterLists
         def initialize(
@@ -91,7 +91,7 @@ module Sparrow
           end
         end
 
-        # rubocop:disable Metrics/MethodLength
+        # rubocop:disable-next Metrics/MethodLength
         def tree
           client.create_tree(
             @config_repo,
@@ -106,7 +106,6 @@ module Sparrow
             logger.debug("created tree", tree: tree.to_h)
           end
         end
-        # rubocop:enable Metrics/MethodLength
 
         def commit
           @commit ||= client.create_commit(
@@ -210,7 +209,6 @@ module Sparrow
           )
         end
       end
-      # rubocop:enable Metrics/ClassLength
     end
   end
 end

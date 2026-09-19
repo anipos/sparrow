@@ -14,37 +14,37 @@ RSpec.describe Sparrow::CloudBuild::Build do
     shared_examples "queued" do |json|
       let(:names) { %W[builds status queued #{json}] }
 
-      include_examples "status", "QUEUED"
+      it_behaves_like "status", "QUEUED"
     end
 
     describe "queued github_app.json" do
-      include_examples "queued", "github_app.json"
+      it_behaves_like "queued", "github_app.json"
     end
 
     shared_examples "working" do |json|
       let(:names) { %W[builds status working #{json}] }
 
-      include_examples "status", "WORKING"
+      it_behaves_like "status", "WORKING"
     end
 
     describe "working github_app.json" do
-      include_examples "working", "github_app.json"
+      it_behaves_like "working", "github_app.json"
     end
 
     shared_examples "failure" do |json|
       let(:names) { %W[builds status failure #{json}] }
 
-      include_examples "status", "FAILURE"
+      it_behaves_like "status", "FAILURE"
     end
 
     describe "failure github_app.json" do
-      include_examples "failure", "github_app.json"
+      it_behaves_like "failure", "github_app.json"
     end
 
     shared_examples "success" do |json|
       let(:names) { %W[builds status success #{json}] }
 
-      include_examples "status", "SUCCESS"
+      it_behaves_like "status", "SUCCESS"
 
       it "#success? returns true" do
         expect(build.success?).to be(true)
@@ -67,7 +67,7 @@ RSpec.describe Sparrow::CloudBuild::Build do
     end
 
     describe "success github_app.json" do
-      include_examples "success", "github_app.json"
+      it_behaves_like "success", "github_app.json"
     end
   end
 
@@ -85,7 +85,7 @@ RSpec.describe Sparrow::CloudBuild::Build do
     end
 
     describe "master github_app.json" do
-      include_examples "master", "github_app.json"
+      it_behaves_like "master", "github_app.json"
     end
   end
 

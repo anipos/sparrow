@@ -38,7 +38,7 @@ RSpec.describe Sparrow::Jobs::GitOps::Rewrite do
   end
 
   describe "rewrite and make pr with github_app.json" do
-    include_examples "rewrite_create_pull_request", "github_app.json"
+    it_behaves_like "rewrite_create_pull_request", "github_app.json"
   end
 
   shared_examples "rewrite_master_push" do |json|
@@ -78,6 +78,6 @@ RSpec.describe Sparrow::Jobs::GitOps::Rewrite do
   end
 
   describe "rewrite and commit to master with github_app.json" do
-    include_examples "rewrite_master_push", "github_app.json"
+    it_behaves_like "rewrite_master_push", "github_app.json"
   end
 end
