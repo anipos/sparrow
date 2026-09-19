@@ -35,6 +35,10 @@ module Sparrow
         substitutions["COMMIT_SHA"]
       end
 
+      def github_repo
+        substitutions["REPO_FULL_NAME"]
+      end
+
       def log_url
         data["logUrl"]
       end
@@ -44,9 +48,7 @@ module Sparrow
       end
 
       def repo_source?
-        # source.repoSource is empty for new github connection method, but is not for legacy method.
-        # substitutions.REPO_NAME is empty for legacy method, but is not for new method.
-        !source["repoSource"].nil? || !repo_name.nil?
+        !repo_name.nil?
       end
 
       def to_json(*)
@@ -54,10 +56,6 @@ module Sparrow
       end
 
       private
-
-      def source
-        data["source"] || {}
-      end
 
       def substitutions
         data["substitutions"] || {}

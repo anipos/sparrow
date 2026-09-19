@@ -23,13 +23,13 @@ RSpec.describe Sparrow::Jobs::Slack do
     expect(build).to receive(:status)
       .at_least(:once)
       .and_return("SUCCESS")
-    expect(build).to receive(:repo_name)
+    expect(build).to receive(:github_repo)
       .at_least(:once)
-      .and_return("github_anipos_sparrow")
+      .and_return("anipos/sparrow")
     log_url = "http://..."
     expect(build).to receive(:log_url).and_return(log_url)
     commit_sha = "58185385207383992f0f813c6014eeaf8c081809"
-    expect(build).to receive(:commit_sha).and_return(commit_sha)
+    expect(build).to receive(:commit_sha).at_least(:once).and_return(commit_sha)
     expect(build).to receive(:tags).and_return(%w[tag1 tag2])
 
     slack_webhook = "http://slack.com/..."
@@ -91,6 +91,27 @@ RSpec.describe Sparrow::Jobs::Slack do
     }.to_json
     headers = { "Content-Type": "application/json" }
     expect(faraday).to receive(:post).with(slack_webhook, body, headers)
+
+    slack.run(message)
+  end
+
+  it "#run omits the commit link when the build has no REPO_FULL_NAME" do
+    slack = described_class.new
+
+    expect(message).to receive(:data)
+      .and_return(fixture("builds", "status", "success", "github_app.json"))
+
+    slack_webhook = "http://slack.com/..."
+    expect(ENV)
+      .to receive(:fetch).with("SPARROW_SLACK_WEBHOOK", nil).and_return(slack_webhook)
+    expect(slack).to receive(:faraday).and_return(faraday)
+
+    expect(faraday).to receive(:post) do |url, body, _headers|
+      expect(url).to eq(slack_webhook)
+      blocks = JSON.parse(body)["blocks"]
+      expect(blocks[1]["fields"][0]["text"]).to eq("*Repository:*\nsparrow")
+      expect(blocks[2]["elements"].map { _1["text"]["text"] }).to eq(["View build"])
+    end
 
     slack.run(message)
   end

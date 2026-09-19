@@ -69,7 +69,7 @@ module Sparrow
       def main_fields_info
         [{
           type: "mrkdwn",
-          text: "*Repository:*\n#{github_repo}"
+          text: "*Repository:*\n#{build.github_repo || build.repo_name}"
         }, {
           type: "mrkdwn",
           text: "*Tags:*\n#{build.tags.join(', ')}"
@@ -97,7 +97,7 @@ module Sparrow
       def actions
         {
           type: "actions",
-          elements: [view_build_button, view_commit_button]
+          elements: [view_build_button, view_commit_button].compact
         }
       end
 
@@ -114,13 +114,15 @@ module Sparrow
       end
 
       def view_commit_button
+        return unless build.github_repo && build.commit_sha
+
         {
           type: "button",
           text: {
             type: "plain_text",
             text: "View commit"
           },
-          url: "https://github.com/#{github_repo}/commit/#{build.commit_sha}",
+          url: "https://github.com/#{build.github_repo}/commit/#{build.commit_sha}",
           style:
         }.compact
       end
@@ -130,11 +132,6 @@ module Sparrow
           "SUCCESS" => "primary",
           "FAILURE" => "danger"
         }[build.status]
-      end
-
-      # TODO(shouichi): Handle other git providers (e.g., bitbucket).
-      def github_repo
-        build.repo_name.delete_prefix("github_").tr("_", "/")
       end
 
       # Visible for testing.

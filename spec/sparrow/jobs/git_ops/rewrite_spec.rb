@@ -37,10 +37,6 @@ RSpec.describe Sparrow::Jobs::GitOps::Rewrite do
     end
   end
 
-  describe "rewrite and make pr with github_legacy.json" do
-    include_examples "rewrite_create_pull_request", "github_legacy.json"
-  end
-
   describe "rewrite and make pr with github_app.json" do
     include_examples "rewrite_create_pull_request", "github_app.json"
   end
@@ -79,10 +75,6 @@ RSpec.describe Sparrow::Jobs::GitOps::Rewrite do
         expect(cm).to be_nil
       end
     end
-  end
-
-  describe "rewrite and commit to master with github_legacy.json" do
-    include_examples "rewrite_master_push", "github_legacy.json"
   end
 
   describe "rewrite and commit to master with github_app.json" do
