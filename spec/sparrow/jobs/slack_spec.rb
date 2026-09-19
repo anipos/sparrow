@@ -23,6 +23,7 @@ RSpec.describe Sparrow::Jobs::Slack do
     expect(build).to receive(:status)
       .at_least(:once)
       .and_return("SUCCESS")
+    allow(build).to receive_messages(success?: true, failed?: false)
     expect(build).to receive(:github_repo)
       .at_least(:once)
       .and_return("anipos/sparrow")
@@ -116,6 +117,28 @@ RSpec.describe Sparrow::Jobs::Slack do
     slack.run(message)
   end
 
+  it "#run treats TIMEOUT as FAILURE for filtering, mention and style" do
+    slack = described_class.new("only" => %w[FAILURE], "mention" => { "FAILURE" => slack_user_id })
+
+    data = JSON.parse(fixture("builds", "status", "failure", "github_app.json"))
+    data["status"] = "TIMEOUT"
+    expect(message).to receive(:data).and_return(data.to_json)
+
+    slack_webhook = "http://slack.com/..."
+    expect(ENV)
+      .to receive(:fetch).with("SPARROW_SLACK_WEBHOOK", nil).and_return(slack_webhook)
+    expect(slack).to receive(:faraday).and_return(faraday)
+
+    expect(faraday).to receive(:post) do |_url, body, _headers|
+      blocks = JSON.parse(body)["blocks"]
+      expect(blocks[0]["text"]["text"]).to eq("Build TIMEOUT")
+      expect(blocks[1]["fields"].last["text"]).to eq("<#{slack_user_id}>")
+      expect(blocks[2]["elements"].map { _1["style"] }.uniq).to eq(["danger"])
+    end
+
+    slack.run(message)
+  end
+
   it "#run skips if build is not repo source" do
     slack = described_class.new
 
@@ -133,6 +156,7 @@ RSpec.describe Sparrow::Jobs::Slack do
     expect(message).to receive(:data).and_return("{}")
     expect(build).to receive(:repo_source?).and_return(true)
     expect(build).to receive(:status).and_return("WORKING")
+    allow(build).to receive(:failed?).and_return(false)
     expect(slack).to receive(:build).at_least(:once).and_return(build)
     expect(slack).not_to receive(:faraday)
 

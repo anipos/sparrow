@@ -99,6 +99,24 @@ RSpec.describe Sparrow::CloudBuild::Build do
     end
   end
 
+  describe "#failed?" do
+    let(:names) { %w[builds status failure github_app.json] }
+
+    it "is true for every failed status" do
+      %w[FAILURE INTERNAL_ERROR TIMEOUT EXPIRED].each do |status|
+        data["status"] = status
+        expect(build.failed?).to be(true)
+      end
+    end
+
+    it "is false for CANCELLED and SUCCESS" do
+      %w[CANCELLED SUCCESS].each do |status|
+        data["status"] = status
+        expect(build.failed?).to be(false)
+      end
+    end
+  end
+
   describe "#github_repo" do
     context "with github_app.json without REPO_FULL_NAME" do
       let(:names) { %w[builds status success github_app.json] }
