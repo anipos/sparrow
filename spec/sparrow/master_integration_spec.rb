@@ -27,11 +27,11 @@ RSpec.describe Sparrow::Master do
     stub_const("Sparrow::Jobs::Recorder", recorder)
 
     # Messages published to an existing subscription are kept until pulled.
-    subscriptions.each_value { client.subscription("cloud-builds", _1) }
+    subscriptions.each_value { client.subscriber("cloud-builds", _1) }
 
     master = described_class.new(config)
     thread = Thread.new { master.start }
-    client.topic("cloud-builds").publish(build_json)
+    client.publisher("cloud-builds").publish(build_json)
 
     results = Array.new(2) { received.pop(timeout: 10) }
     expect(results).to contain_exactly(%w[first SUCCESS], %w[second SUCCESS])

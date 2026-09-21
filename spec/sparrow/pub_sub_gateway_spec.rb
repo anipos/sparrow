@@ -12,19 +12,19 @@ RSpec.describe Sparrow::PubSubGateway do
   let(:pubsub) { described_class::Client.new(project_id) }
 
   it "calls Worker#process_message" do
-    subscriber = gateway.subscribe(worker)
+    listener = gateway.subscribe(worker)
 
     expect(worker).to receive(:process_message)
-    topic = pubsub.topic(topic_name)
-    topic.publish("hello")
+    publisher = pubsub.publisher(topic_name)
+    publisher.publish("hello")
 
     # No proper way to wait for the message to arrive.
     sleep 1
-    subscriber.stop.wait!
+    listener.stop.wait!
   end
 
   it "Sentry.capture_exception on worker exception" do
-    subscriber = gateway.subscribe(worker)
+    listener = gateway.subscribe(worker)
 
     # https://github.com/getsentry/sentry-ruby/blob/fddb235b0b21cf78cd0d9f37e1fa2ab60febbf4c/sentry-ruby/spec/spec_helper.rb#L82
     Sentry.init do |config|
@@ -36,12 +36,12 @@ RSpec.describe Sparrow::PubSubGateway do
     end
 
     expect(worker).to receive(:process_message).and_raise("boom")
-    topic = pubsub.topic(topic_name)
-    topic.publish("hello")
+    publisher = pubsub.publisher(topic_name)
+    publisher.publish("hello")
 
     # No proper way to wait for the message to arrive.
     sleep 1
-    subscriber.stop.wait!
+    listener.stop.wait!
     expect(Sentry.get_current_client.transport.events.count).to eq(1)
   end
 
@@ -65,22 +65,22 @@ RSpec.describe Sparrow::PubSubGateway do
 
   it "acknowledges the message when the job fails with a non-retryable error" do
     events = failing_worker(RuntimeError.new("boom"))
-    subscriber = gateway.subscribe(worker)
-    pubsub.topic(topic_name).publish("hello")
+    listener = gateway.subscribe(worker)
+    pubsub.publisher(topic_name).publish("hello")
 
     expect(events.pop(timeout: 5)).to eq(:acknowledge!)
     expect(events.pop(timeout: 2)).to be_nil
-    subscriber.stop.wait!
+    listener.stop.wait!
   end
 
   it "rejects the message so that it is redelivered when the job fails with a retryable error" do
     events = failing_worker(Faraday::ConnectionFailed.new("down"))
-    subscriber = gateway.subscribe(worker)
-    pubsub.topic(topic_name).publish("hello")
+    listener = gateway.subscribe(worker)
+    pubsub.publisher(topic_name).publish("hello")
 
     expect(events.pop(timeout: 5)).to eq(:reject!)
     expect(events.pop(timeout: 5)).to eq(:reject!)
-    subscriber.stop.wait!
+    listener.stop.wait!
   end
 
   it "logs worker exception even when Sentry is not initialized" do
@@ -92,14 +92,14 @@ RSpec.describe Sparrow::PubSubGateway do
     expect(logger).to receive(:error)
       .once
       .with("job failed", an_instance_of(RuntimeError), hash_including(message: "hello"))
-    subscriber = gateway.subscribe(worker)
+    listener = gateway.subscribe(worker)
 
     expect(worker).to receive(:process_message).and_raise("boom")
-    topic = pubsub.topic(topic_name)
-    topic.publish("hello")
+    publisher = pubsub.publisher(topic_name)
+    publisher.publish("hello")
 
     # No proper way to wait for the message to arrive.
     sleep 1
-    subscriber.stop.wait!
+    listener.stop.wait!
   end
 end

@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     sparrow (0.1.0)
-      google-cloud-pubsub (>= 1.6, < 4.0)
+      google-cloud-pubsub (>= 3.0, < 4.0)
       json (< 3)
       octokit (>= 4.15, < 11.0)
       ougai (>= 1.8, < 3.0)
