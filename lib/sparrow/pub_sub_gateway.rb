@@ -29,9 +29,9 @@ module Sparrow
     # `worker.process_message` on message arrival. It does not block; to wait
     # this call to exit, call `wait!`.
     def subscribe(worker)
-      subscriber = listen(worker)
-      subscriber.on_error { |e| on_error(e) }
-      subscriber.start
+      listener = listen(worker)
+      listener.on_error { |e| on_error(e) }
+      listener.start
     end
 
     private
@@ -51,12 +51,12 @@ module Sparrow
       @client ||= Client.new(@project_id)
     end
 
-    def subscription
-      @subscription ||= client.subscription(@topic_name, @subscription_name)
+    def subscriber
+      @subscriber ||= client.subscriber(@topic_name, @subscription_name)
     end
 
     def listen(worker)
-      subscription.listen do |message|
+      subscriber.listen do |message|
         worker.process_message(message)
         message.acknowledge!
       rescue StandardError => e
@@ -76,16 +76,22 @@ module Sparrow
         @project_id = project_id
       end
 
-      # Returns the topic. Creates one iff the emulator is used before return.
-      def topic(name)
-        pubsub.topic(name) || create_topic(name)
+      # Returns the publisher. Creates the topic iff the emulator is used
+      # before return.
+      def publisher(topic_name)
+        pubsub.publisher(topic_name)
+      rescue Google::Cloud::NotFoundError
+        create_topic(topic_name)
+        pubsub.publisher(topic_name)
       end
 
-      # Returns the subscription. Creates one iff the emulator is used before
-      # return.
-      def subscription(topic_name, subscription_name)
-        pubsub.subscription(subscription_name) ||
-          create_subscription(topic_name, subscription_name)
+      # Returns the subscriber. Creates the subscription iff the emulator is
+      # used before return.
+      def subscriber(topic_name, subscription_name)
+        pubsub.subscriber(subscription_name)
+      rescue Google::Cloud::NotFoundError
+        create_subscription(topic_name, subscription_name)
+        pubsub.subscriber(subscription_name)
       end
 
       private
@@ -101,14 +107,17 @@ module Sparrow
       def create_topic(name)
         raise Sparrow::Error, "create topic iff emulator" unless emulator?
 
-        pubsub.create_topic(name)
+        pubsub.topic_admin.create_topic(name: pubsub.topic_path(name))
       end
 
       def create_subscription(topic_name, subscription_name)
         raise Sparrow::Error, "create subscription iff emulator" unless emulator?
 
-        topic = topic(topic_name)
-        topic.subscribe(subscription_name)
+        publisher(topic_name)
+        pubsub.subscription_admin.create_subscription(
+          name: pubsub.subscription_path(subscription_name),
+          topic: pubsub.topic_path(topic_name)
+        )
       end
     end
   end
