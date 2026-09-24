@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "faraday"
 require "google/cloud/pubsub"
+require "net/http"
 require "octokit"
 require "sentry-ruby"
 
@@ -13,10 +13,13 @@ module Sparrow
   #   - roles/pubsub.viewer
   class PubSubGateway
     RETRYABLE_ERRORS = [
-      Faraday::ConnectionFailed,
-      Faraday::ServerError,
+      Errno::ECONNREFUSED,
+      Errno::ECONNRESET,
+      Net::OpenTimeout,
+      Net::ReadTimeout,
       Octokit::ServerError,
       Octokit::TooManyRequests,
+      SocketError,
     ].freeze
 
     def initialize(project_id, topic_name, subscription_name)

@@ -74,7 +74,7 @@ RSpec.describe Sparrow::PubSubGateway do
   end
 
   it "rejects the message so that it is redelivered when the job fails with a retryable error" do
-    events = failing_worker(Faraday::ConnectionFailed.new("down"))
+    events = failing_worker(Errno::ECONNREFUSED.new("down"))
     listener = gateway.subscribe(worker)
     pubsub.publisher(topic_name).publish("hello")
 

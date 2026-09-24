@@ -181,7 +181,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  bundler
   rake
   rspec
   rspec_junit_formatter
