@@ -8,7 +8,6 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 gemspec
 
 group :development, :test do
-  gem "bundler"
   gem "rake"
   gem "rspec"
   gem "rspec_junit_formatter"

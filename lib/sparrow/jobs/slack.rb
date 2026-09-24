@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "faraday"
+require "net/http"
 
 require "sparrow/jobs/base"
 
@@ -8,7 +8,7 @@ module Sparrow
   module Jobs
     # Notifies builds to slack.
     class Slack < Base # rubocop:disable Metrics/ClassLength
-      HEADERS = { "Content-Type": "application/json" }.freeze
+      HEADERS = { "Content-Type" => "application/json" }.freeze
 
       private
 
@@ -18,7 +18,7 @@ module Sparrow
           return
         end
 
-        faraday.post(url, body, HEADERS)
+        Net::HTTP.post(URI(url), body, HEADERS)
         Sparrow.logger.info("sent to slack")
       end
 
@@ -138,11 +138,6 @@ module Sparrow
         return "primary" if build.success?
 
         "danger" if build.failed?
-      end
-
-      # Visible for testing.
-      def faraday
-        Faraday
       end
     end
   end

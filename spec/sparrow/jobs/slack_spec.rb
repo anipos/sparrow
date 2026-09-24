@@ -1,165 +1,144 @@
 # frozen_string_literal: true
 
 RSpec.describe Sparrow::Jobs::Slack do
-  let(:message) { instance_double("message") }
-  let(:build) { instance_double("build") }
-  let(:faraday) { instance_double("faraday") }
+  let(:webhook) { "https://hooks.slack.com/services/T0/B0/XXX" }
   let(:slack_user_id) { "@U024BE7LH" }
+  let(:posted_bodies) { [] }
 
-  it "#run does not raise an error" do
-    slack = described_class.new(
-      "mention" => {
-        "SUCCESS" => slack_user_id
-      }
-    )
+  before do
+    allow(ENV).to receive(:fetch).and_call_original
+    allow(ENV).to receive(:fetch).with("SPARROW_SLACK_WEBHOOK", nil).and_return(webhook)
 
-    expect(message).to receive(:data).and_return("{}")
+    stub_request(:post, webhook).to_return do |request|
+      posted_bodies << JSON.parse(request.body)
+      { status: 200 }
+    end
+  end
 
-    expect(slack).to receive(:build)
-      .at_least(:once)
-      .and_return(build)
+  def build_data(*names)
+    JSON.parse(fixture("builds", *names))
+  end
 
-    expect(build).to receive(:repo_source?).and_return(true)
-    expect(build).to receive(:status)
-      .at_least(:once)
-      .and_return("SUCCESS")
-    allow(build).to receive_messages(success?: true, failed?: false)
-    expect(build).to receive(:github_repo)
-      .at_least(:once)
-      .and_return("anipos/sparrow")
-    log_url = "http://..."
-    expect(build).to receive(:log_url).and_return(log_url)
-    commit_sha = "58185385207383992f0f813c6014eeaf8c081809"
-    expect(build).to receive(:commit_sha).at_least(:once).and_return(commit_sha)
-    expect(build).to receive(:tags).and_return(%w[tag1 tag2])
+  def message_for(data)
+    instance_double("message", data: data.to_json)
+  end
 
-    slack_webhook = "http://slack.com/..."
-    expect(ENV)
-      .to receive(:fetch).with("SPARROW_SLACK_WEBHOOK", nil).and_return(slack_webhook)
+  def blocks
+    expect(posted_bodies.size).to eq(1)
+    posted_bodies.first["blocks"]
+  end
 
-    expect(slack).to receive(:faraday).and_return(faraday)
+  it "posts the build as a block kit message" do
+    data = build_data("status", "success", "github_app.json")
+    data["substitutions"]["REPO_FULL_NAME"] = "anipos/sparrow"
 
-    body = {
-      blocks: [
+    described_class.new("mention" => { "SUCCESS" => slack_user_id }).run(message_for(data))
+
+    expect(WebMock)
+      .to have_requested(:post, webhook)
+      .with(headers: { "Content-Type" => "application/json" })
+    expect(blocks).to eq(
+      [
         {
-          type: "header",
-          text: {
-            type: "plain_text",
-            text: "Build SUCCESS"
-          }
+          "type" => "header",
+          "text" => { "type" => "plain_text", "text" => "Build SUCCESS" }
         },
         {
-          type: "section",
-          fields: [
-            {
-              type: "mrkdwn",
-              text: "*Repository:*\nanipos/sparrow"
-            },
-            {
-              type: "mrkdwn",
-              text: "*Tags:*\ntag1, tag2"
-            },
-            {
-              type: "mrkdwn",
-              text: "<#{slack_user_id}>"
-            },
+          "type" => "section",
+          "fields" => [
+            { "type" => "mrkdwn", "text" => "*Repository:*\nanipos/sparrow" },
+            { "type" => "mrkdwn", "text" => "*Tags:*\n#{data['tags'].join(', ')}" },
+            { "type" => "mrkdwn", "text" => "<#{slack_user_id}>" },
           ]
         },
         {
-          type: "actions",
-          elements: [
+          "type" => "actions",
+          "elements" => [
             {
-              type: "button",
-              text: {
-                type: "plain_text",
-                text: "View build"
-              },
-              url: log_url,
-              style: "primary"
+              "type" => "button",
+              "text" => { "type" => "plain_text", "text" => "View build" },
+              "url" => data["logUrl"],
+              "style" => "primary"
             },
             {
-              type: "button",
-              text: {
-                type: "plain_text",
-                text: "View commit"
-              },
-              url: "https://github.com/anipos/sparrow/commit/#{commit_sha}",
-              style: "primary"
+              "type" => "button",
+              "text" => { "type" => "plain_text", "text" => "View commit" },
+              "url" => "https://github.com/anipos/sparrow/commit/#{data['substitutions']['COMMIT_SHA']}",
+              "style" => "primary"
             },
           ]
         },
       ]
-    }.to_json
-    headers = { "Content-Type": "application/json" }
-    expect(faraday).to receive(:post).with(slack_webhook, body, headers)
-
-    slack.run(message)
+    )
   end
 
-  it "#run omits the commit link when the build has no REPO_FULL_NAME" do
-    slack = described_class.new
+  it "omits the commit link when the build has no REPO_FULL_NAME" do
+    described_class.new.run(message_for(build_data("status", "success", "github_app.json")))
 
-    expect(message).to receive(:data)
-      .and_return(fixture("builds", "status", "success", "github_app.json"))
-
-    slack_webhook = "http://slack.com/..."
-    expect(ENV)
-      .to receive(:fetch).with("SPARROW_SLACK_WEBHOOK", nil).and_return(slack_webhook)
-    expect(slack).to receive(:faraday).and_return(faraday)
-
-    expect(faraday).to receive(:post) do |url, body, _headers|
-      expect(url).to eq(slack_webhook)
-      blocks = JSON.parse(body)["blocks"]
-      expect(blocks[1]["fields"][0]["text"]).to eq("*Repository:*\nsparrow")
-      expect(blocks[2]["elements"].map { _1["text"]["text"] }).to eq(["View build"])
-    end
-
-    slack.run(message)
+    expect(blocks[1]["fields"][0]["text"]).to eq("*Repository:*\nsparrow")
+    expect(blocks[2]["elements"].map { _1["text"]["text"] }).to eq(["View build"])
   end
 
-  it "#run treats TIMEOUT as FAILURE for filtering, mention and style" do
-    slack = described_class.new("only" => %w[FAILURE], "mention" => { "FAILURE" => slack_user_id })
+  it "omits the mention when no mention is configured for the status" do
+    described_class.new("mention" => { "FAILURE" => slack_user_id })
+      .run(message_for(build_data("status", "success", "github_app.json")))
 
-    data = JSON.parse(fixture("builds", "status", "failure", "github_app.json"))
+    expect(blocks[1]["fields"].map { _1["text"] }).to all(start_with("*"))
+  end
+
+  it "posts failed builds in danger style" do
+    described_class.new.run(message_for(build_data("status", "failure", "github_app.json")))
+
+    expect(blocks[2]["elements"].map { _1["style"] }.uniq).to eq(["danger"])
+  end
+
+  it "treats TIMEOUT as FAILURE for filtering, mention and style" do
+    data = build_data("status", "failure", "github_app.json")
     data["status"] = "TIMEOUT"
-    expect(message).to receive(:data).and_return(data.to_json)
 
-    slack_webhook = "http://slack.com/..."
-    expect(ENV)
-      .to receive(:fetch).with("SPARROW_SLACK_WEBHOOK", nil).and_return(slack_webhook)
-    expect(slack).to receive(:faraday).and_return(faraday)
+    described_class.new("only" => %w[FAILURE], "mention" => { "FAILURE" => slack_user_id })
+      .run(message_for(data))
 
-    expect(faraday).to receive(:post) do |_url, body, _headers|
-      blocks = JSON.parse(body)["blocks"]
-      expect(blocks[0]["text"]["text"]).to eq("Build TIMEOUT")
-      expect(blocks[1]["fields"].last["text"]).to eq("<#{slack_user_id}>")
-      expect(blocks[2]["elements"].map { _1["style"] }.uniq).to eq(["danger"])
-    end
-
-    slack.run(message)
+    expect(blocks[0]["text"]["text"]).to eq("Build TIMEOUT")
+    expect(blocks[1]["fields"].last["text"]).to eq("<#{slack_user_id}>")
+    expect(blocks[2]["elements"].map { _1["style"] }.uniq).to eq(["danger"])
   end
 
-  it "#run skips if build is not repo source" do
-    slack = described_class.new
+  it "posts QUEUED and WORKING builds by default" do
+    described_class.new.run(message_for(build_data("status", "queued", "github_app.json")))
+    described_class.new.run(message_for(build_data("status", "working", "github_app.json")))
 
-    expect(message).to receive(:data).and_return("{}")
-    expect(build).to receive(:repo_source?).and_return(false)
-    expect(slack).to receive(:build).and_return(build)
-    expect(slack).not_to receive(:faraday)
-
-    slack.run(message)
+    expect(posted_bodies.map { _1["blocks"][0]["text"]["text"] })
+      .to eq(["Build QUEUED", "Build WORKING"])
   end
 
-  it "#run skips if status does not match" do
-    slack = described_class.new("only" => %w[SUCCESS FAILURE])
+  it "does not post when the build is not from a repo source" do
+    described_class.new.run(message_for(build_data("source", "storage.json")))
 
-    expect(message).to receive(:data).and_return("{}")
-    expect(build).to receive(:repo_source?).and_return(true)
-    expect(build).to receive(:status).and_return("WORKING")
-    allow(build).to receive(:failed?).and_return(false)
-    expect(slack).to receive(:build).at_least(:once).and_return(build)
-    expect(slack).not_to receive(:faraday)
+    expect(WebMock).not_to have_requested(:post, webhook)
+  end
 
-    slack.run(message)
+  it "does not post when the status is not in `only`" do
+    described_class.new("only" => %w[SUCCESS FAILURE])
+      .run(message_for(build_data("status", "working", "github_app.json")))
+
+    expect(WebMock).not_to have_requested(:post, webhook)
+  end
+
+  it "raises an error the gateway retries when slack is unreachable" do
+    stub_request(:post, webhook).to_timeout
+
+    expect { described_class.new.run(message_for(build_data("status", "success", "github_app.json"))) }
+      .to raise_error do |error|
+        expect(Sparrow::PubSubGateway::RETRYABLE_ERRORS).to include(error.class)
+      end
+  end
+
+  it "does not raise when slack rejects the message" do
+    stub_request(:post, webhook).to_return(status: 500)
+
+    expect { described_class.new.run(message_for(build_data("status", "success", "github_app.json"))) }
+      .not_to raise_error
+    expect(WebMock).to have_requested(:post, webhook)
   end
 end
