@@ -43,7 +43,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "google-cloud-pubsub", ">= 3.0", "< 4.0"
   # Until oj 3.17.7 ships. https://github.com/ohler55/oj/issues/1104
-  spec.add_dependency "json", "< 3"
+  spec.add_dependency "json", "< 4"
   spec.add_dependency "octokit", ">= 4.15", "< 11.0"
   spec.add_dependency "ougai", ">= 1.8", "< 3.0"
   spec.add_dependency "sentry-ruby", ">= 4", "< 8"
