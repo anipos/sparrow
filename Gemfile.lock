@@ -67,7 +67,7 @@ GEM
       google-protobuf (~> 4.26)
       googleapis-common-protos-types (~> 1.21)
       grpc (~> 1.41)
-    googleapis-common-protos-types (1.23.0)
+    googleapis-common-protos-types (1.24.0)
       google-protobuf (~> 4.26)
     googleauth (1.17.5)
       faraday (>= 1.0, < 3.a)
