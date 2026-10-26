@@ -1,5 +1,5 @@
 # Base image
-FROM ruby:4.0.7-slim AS base
+FROM ruby:4.0.8-slim AS base
 
 ENV LANG=C.UTF-8
 ENV APP_ROOT=/sparrow
