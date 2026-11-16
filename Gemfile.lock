@@ -84,7 +84,7 @@ GEM
       google-protobuf (>= 3.18, < 5.a)
       googleapis-common-protos (~> 1.9)
       grpc (>= 1.84.1, < 2.a)
-    hashdiff (1.2.1)
+    hashdiff (1.2.2)
     json (3.1.0)
     jwt (3.3.0)
       base64
