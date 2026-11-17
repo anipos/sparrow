@@ -25,6 +25,9 @@ RSpec.describe Sparrow::Master do
     calls = []
 
     subscription = instance_double("subscription")
+    expect(subscription).to receive(:stop).twice do
+      calls << :stop
+    end
     expect(subscription).to receive(:wait!).twice do
       calls << :wait!
     end
@@ -40,8 +43,8 @@ RSpec.describe Sparrow::Master do
       .with(anything, Sparrow::Jobs::Print, { "key" => "val" })
       .and_return(worker)
 
+    master.stop
     expect { master.start }.not_to raise_error
-    # wait! blocks forever in production, so every worker must be started before waiting on any.
-    expect(calls).to eq(%i[start start wait! wait!])
+    expect(calls).to eq(%i[start start stop stop wait! wait!])
   end
 end

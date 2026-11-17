@@ -8,18 +8,24 @@ module Sparrow
   class Master
     def initialize(config)
       @config = config
+      @stop = Queue.new
     end
 
-    # Starts all workers and then blocks until every one of them exits.
+    # Starts all workers and then blocks until `stop` is called and in-flight
+    # jobs finish.
     def start
-      @subscribers = workers.map(&:start)
-      @subscribers.each(&:wait!)
+      subscribers = workers.map(&:start)
+      @stop.pop
+      Sparrow.logger.info("stopping workers")
+      subscribers.each(&:stop)
+      # `wait!` before `stop` returns immediately and shuts down the callback
+      # pool since google-cloud-pubsub 3.5.0.
+      subscribers.each(&:wait!)
     end
 
-    # Stops receiving messages; unblocks `start` once in-flight jobs finish.
+    # Unblocks `start`. Safe to call from any thread.
     def stop
-      Sparrow.logger.info("stopping workers")
-      @subscribers&.each(&:stop)
+      @stop << true
     end
 
     private
